@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>bounce-demo</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, minimal-ui" />
+    <link rel="stylesheet" type="text/css" href="">
+    <style type="text/css">
+        html {
+            font: 100%/1.5 "Roboto", Verdana, sans-serif;
+            color: #3d464d;
+            background-color: #fff;
+            -webkit-font-smoothing: antialiased;
+            width: 100%;
+            overflow: hidden-x;
+            text-align: center;
+        }
+        .font-style{
+            color: #f35626;
+            background-image: -webkit-linear-gradient(92deg,#f35626,#feab3a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            -webkit-animation: hue 10s infinite linear;
+        }
+        h1{
+            margin-bottom: 1.5rem;
+            font-size: 6rem;
+            font-weight: 100;
+            line-height: 1;
+            letter-spacing: -.05em;
+        }
+        @-webkit-keyframes hue {
+          from {
+            -webkit-filter: hue-rotate(0deg);
+          }
+
+          to {
+            -webkit-filter: hue-rotate(-360deg);
+          }
+        }
+    </style>
+    <style type="text/css">
+        .animated {
+          animation-duration: 1.5s;
+          animation-fill-mode: both;
+        }
+
+        .animated.infinite {
+          animation-iteration-count: infinite;
+        }
+        .bounce {
+          animation-name: bounce;
+          transform-origin: center bottom;
+        }
+
+        @keyframes bounce {
+          0%, 15%, 47%, 73%,89%,100% {
+            animation-timing-function: ease-out;
+            transform: translate3d(0,0,0);
+          }
+
+          30%, 32% {
+            animation-timing-function: ease-in;
+            transform: translate3d(0, -42px, 0);
+          }
+
+          60% {
+            animation-timing-function: ease-in;
+            transform: translate3d(0, -24px, 0);
+          }
+
+          82% {
+            animation-timing-function: ease-in;
+            transform: translate3d(0, -12px, 0);
+          }
+
+          94% {
+            animation-timing-function: ease-in;
+            transform: translate3d(0,-3px,0);
+          }
+        }
+    </style>
+</head>
+<body>
+    <header>
+      <div>
+       <span style="display: block;" class="bounce animated infinite"><h1 class="font-style">bounce</h1></span>
+      </div>
+    </header>
+</body>
+</html>

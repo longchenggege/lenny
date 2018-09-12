@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+
+<script type="text/javascript">
+        var lis = [1,2,3,4,5,6,7,9,10];
+  var personDiv = [1,2,5];
+  var hrr = [];
+    for(var i=0;i<lis.length;i++){
+      document.write(lis[i]+'--');
+      if(is_Filter(lis[i])){
+        hrr.push(lis[i]);
+      }
+    }
+    function is_Filter(li){
+      for(var j=0;j<personDiv.length;j++){
+        if(li == personDiv[j]){
+          document.write('||');
+          return false;
+        }
+      }
+      return true;
+    }
+  document.write("<br/>");
+    for(var index in hrr){
+      document.write(hrr[index]+"<br/>");
+    }
+document.write("分割线<br/>");
+  var random = Math.floor(Math.random()*(hrr.length-1));  
+document.write(random);
+
+</script>
+</body>
+</html>

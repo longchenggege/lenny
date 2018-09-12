@@ -1,0 +1,39 @@
+js:
+脚本语言，弱类型
+
+能干嘛，
+1、能写一些效果，给网页增加色彩
+2、表单验证
+
+1、
+alert (系统弹出框)/ 
+document.write（文档输入内容） / 
+console.log（f12、右键检查,console可以看到）
+
+2、语法构成
+  （1）区分大小写， ECMAScript 中一切 变量函数操作符都区分大小写。
+  （2）标识符 ，第一位（字母、下划线、$）,其他（数字、字母下、划线、$）
+  （3）注释符号，单行：// 多行：/* */
+
+3、关键字和保留字：一些标识符是保留关键字，不能用作变量名或函数名。
+  （1）ECMAScript关键字
+  （2）ECMAScript保留字
+
+4、变量
+
+
+
+响应式布局：
+1、
+media query:
+(1)
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+(2)
+外联：
+<link media="(min-width:500px) and (orientation:landscape)" rel="stylesheet" type="text/css" href="dos.css">
+<link media="(max-width:500px)" rel="stylesheet" type="text/css" href="m.css">
+css内嵌:
+@media screen and (max-width: 800px) {
+　table td:nth-child(2),
+　table th:nth-child(2) {display: none;}
+}

@@ -1,0 +1,246 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>贪吃蛇</title>
+  <style type="text/css">
+  *{margin:0; padding: 0;}
+  ul{ list-style: none;}
+  #container{
+    margin: 10px auto;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    border-right: none;
+    position: relative;
+
+  }
+  #container > div{ float: right;}
+  #uls{overflow: hidden;}
+  #uls li{
+    border: 1px solid #ccc;
+    border-top: none;
+    border-left: none;
+    float: left;
+  }
+  #person > div{
+    background: #0f0;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    font-size: 10px;
+  }
+  .food{
+    position: absolute;
+    left: 0;
+    top:0;
+    background: #f00;
+  }
+  .personBody{
+    opacity: 0.5;
+  }
+  </style>
+</head>
+<body>
+  <div id='container'>
+    <ul id='uls'>
+      
+    </ul>
+    <button id='btn'>开始游戏</button>
+    <div id='num'>积分:0</div>
+    <div id='person'>
+    </div>
+  </div>
+
+<script type="text/javascript">
+  var container = $id('container'),
+      uls = $id('uls'),
+      btn = $id('btn'),
+      timer = null,
+      food = null,
+      point = $id('num'),
+      index = 0,
+      person = $id('person'),
+      personDiv = $tagName(person,'div'),
+      lis = $tagName(uls,'li'),
+      perData = {speed:200,code:39},
+      datas = {size:30,x:10,y:10}; //size是元素宽高，xy横纵数量
+
+  function init(){  //初始化游戏
+    createMap();
+    
+  }   
+
+  function createMap(){  //创建地图
+    container.style.width = container.style.height = (datas.size+1)*datas.x;
+    for(i=0;i<datas.x*datas.y;i++){
+      var k = document.createElement('li');
+      k.style.width = k.style.height = datas.size;
+      k.index = i;
+      uls.appendChild(k);
+    }
+    start();
+  }
+
+  function start(){
+    btn.onclick = function(){
+      createPerson();
+      movePerson();
+      bindPerson();
+      createFood();
+    }
+  }
+
+  function num(){
+    index+=10;
+    point.innerHTML = "积分:"+index;
+  }
+
+  function createFood(){
+    var hrr = [];
+    for(var i=0;i<lis.length;i++){
+      if(is_Filter(lis[i])){
+        hrr.push(lis[i]);
+      }
+    }
+    function is_Filter(li){
+      for(var i=0;i<personDiv.length;i++){
+        if(li.index == personDiv[i].index){
+          return false;
+        }
+      }
+      return true;
+    }
+
+    var random = Math.floor(Math.random()*(hrr.length-1));
+    food = document.createElement('div');
+    food.style.width = food.style.height = datas.size+1+'px';
+    food.className = 'food';
+    food.style.left = hrr[random].offsetLeft+'px';
+    food.style.top = hrr[random].offsetTop+'px';
+    container.appendChild(food);
+  }
+
+  function createPerson(){
+    var p = document.createElement('div');
+    p.style.width = p.style.height = datas.size+1+'px';
+    p.index = 0;
+    person.appendChild(p);
+  }
+  // 是否撞到边界
+  function isOut(){
+    for(var i=0;i<lis.length;i++){
+      if(col(lis[i],personDiv[0])){ //有碰撞，返回false
+        return false;
+      }
+    }
+    return true;
+  }
+  // 是否撞到自身撞到自身和出边界
+  function isSelf(){
+    for(var i=1;i<personDiv.length;i++){
+      if(col(personDiv[0],personDiv[i])){
+        return true;
+      }
+    }
+    return false;
+  }
+
+//定时器人移动
+  function movePerson(){
+    timer = setInterval(function(){
+      //判断是否
+      if(isOut() || isSelf()){
+        alert('游戏结束');
+        clearInterval(timer);
+
+      }
+      //判断是否撞到目标
+      if(col(personDiv[0],food)){
+        food.className = 'personBody';
+        person.appendChild(food); 
+        createFood();
+        num();
+      }
+
+      for(var i=personDiv.length-1;i>0;i--){
+        personDiv[i].style.left = personDiv[i-1].offsetLeft+"px";
+        personDiv[i].style.top = personDiv[i-1].offsetTop+"px";
+        personDiv[i].index = personDiv[i-1].index;
+      }
+      
+      switch(perData.code){
+        case 37:
+        personDiv[0].style.left = personDiv[0].offsetLeft-(datas.size+1)+'px';
+        personDiv[0].index-=1;
+        break;
+        case 38:
+          personDiv[0].style.top = personDiv[0].offsetTop-(datas.size+1)+'px';
+          personDiv[0].index-=datas.x;
+        break;
+        case 39:
+        personDiv[0].style.left = personDiv[0].offsetLeft+(datas.size+1)+'px';
+        personDiv[0].index+=1;
+        break;
+        case 40:
+        personDiv[0].style.top = personDiv[0].offsetTop+(datas.size+1)+'px';
+        personDiv[0].index+=datas.x;
+        break;
+      }
+    },perData.speed);
+  }
+
+  //监测鼠标点击
+  function bindPerson(){
+    document.onkeydown = function(e){
+      var e = window.event || e;
+      switch(e.keyCode){
+        case 37:
+        perData.code = 37;
+        break;
+        case 38:
+        perData.code = 38;
+        break;
+        case 39:
+        perData.code = 39;
+        break;
+        case 40:
+        perData.code = 40;
+        break;
+      }
+    }
+  }
+
+  function $id(id){
+    return document.getElementById(id);
+  }
+  function $tagName(parent,child){
+    return parent.getElementsByTagName(child);
+  }
+
+  //检测碰撞函数
+  function col(el1,el2){
+    //el1 蛇
+    //el2 新点
+    var f1 = el1.offsetLeft+el1.offsetWidth;
+    var f2 = el1.offsetLeft;
+    var f3 = el1.offsetTop+el1.offsetHeight;
+    var f4 = el1.offsetTop;
+
+    var s1 = el2.offsetLeft;
+    var s2 = el2.offsetLeft+el2.offsetWidth;
+    var s3 = el2.offsetTop;
+    var s4 = el2.offsetTop+el2.offsetHeight;
+    if(f1<=s1 || f2>=s2 || f3<=s3 || f4>=s4){
+      return false;
+    }else{
+      return true;
+    }
+  }
+
+  init();
+
+</script>
+
+
+<!-- 为啥可以给personDiv[] -->
+</body>
+</html>

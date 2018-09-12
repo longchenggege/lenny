@@ -1,0 +1,85 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>贪吃蛇</title>
+  <style type="text/css">
+  *{margin:0; padding: 0;}
+  ul{ list-style: none;}
+  #container{
+    border: 1px solid #ccc;
+    border-bottom: none;
+    border-right: none;
+    position: relative;
+  }
+  #container > div{ float: right;}
+  #uls{}
+  #uls li{
+    border: 1px solid #ccc;
+    border-top: none;
+    border-left: none;
+    float: left;
+  }
+  #person > div{
+  	background: #0f0;
+  	position: absolute;
+  	left: 0px;
+  	top: 0px;
+  }
+  </style>
+</head>
+<body>
+  <div id='container'>
+    <ul id='uls'>
+      
+    </ul>
+    <button id='btn'>开始游戏</button>
+    <div>积分:0</div>
+    <div id='person'>
+    </div>
+  </div>
+
+<script type="text/javascript">
+  var container = $id('container'),
+      uls = $id('uls'),
+      btn = $id('btn'),
+      person = $id('person'),
+      datas = {size:20,x:10,y:10}; //size是元素宽高，xy横纵数量
+
+  function init(){  //初始化游戏
+    createMap();
+    start();
+  }   
+
+  function createMap(){  //创建地图
+    container.style.width = container.style.height = (datas.size+1)*datas.x;
+    for(i=0;i<datas.x*datas.y;i++){
+      var k = document.createElement('li');
+      k.style.width = k.style.height = datas.size;
+      uls.appendChild(k);
+    }
+  }
+
+  function start(){
+  	btn.onclick = function(){
+  		createPerson();
+  	}
+  }
+
+  function createPerson(){
+  	var p = document.createElement('div');
+  	p.style.width = p.style.height = datas.size+1+'px';
+  	person.appendChild(p);
+  }
+
+  function $id(id){
+    return document.getElementById(id);
+  }
+  function $tagname(parent,child){
+    return parent.getElementsByTagName(child);
+  }
+
+  init();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+1/html
+2/css
+3/特效（js）
+
+1、<meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"> 不论使用哪个版本ie，总是以最新版本ie去打开页面。
+2、<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1">
+视口宽度：320
+布局宽度：1000
+当视口宽度只有320时候，去打开布局1000宽度的页面,添加这段代码，会将1000的布局框架
+
+单位：
+绝对单位：px
+相对： em,相对父元素，rem,相对根目录
+
+响应式图片：
+
+1、img srcset 
+<img src='400.jpg' srcset='800.jpg 800w,1600.jpg 1600w'>  ==>缓存，大图片也加载了
+
+2、picture  解决本身srcset的问题，但支持高于ie8的浏览器，picturefill.js可解决该问题。
+<picture> 
+  <source srcset="smaller_landscape.jpg" media="(max-width: 40em) and (orientation: landscape)"> 
+  <source srcset="smaller_portrait.jpg" media="(max-width: 40em) and (orientation: portrait)"> 
+  <source srcset="default_landscape.jpg" media="(min-width: 40em) and (orientation: landscape)"> 
+  <source srcset="default_portrait.jpg" media="(min-width: 40em) and (orientation: portrait)"> 
+  <img srcset="default_landscape.jpg"> 
+</picture>
+<script src= 'picturefill.js'></script>
+3、svg
+
+网址：
+ehcto.ehcto.com

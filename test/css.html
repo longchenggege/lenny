@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <style type="text/css">
+    #talkbubble { 
+      width: 120px; 
+      height: 80px; 
+      background: red; 
+      position: relative; 
+      } 
+    #talkbubble:before { 
+      content:"";
+      position: absolute; 
+      right: 100%; 
+      top: 0px; 
+      width: 0; 
+      height: 0; 
+      border-top: 40px solid transparent; 
+      border-right: 80px solid red; 
+      border-bottom: 40px solid transparent; 
+    }
+    #talkbubble:after { 
+      content:"";
+      position: absolute; 
+      left: 100%; 
+      top: 0px; 
+      width: 0; 
+      height: 0; 
+      border-top: 40px solid transparent; 
+      border-left: 80px solid red; 
+      border-bottom: 40px solid transparent; 
+    }
+
+    #k{
+      width: 20px;
+      height: 30px;
+      border: 40px solid;
+      border-color: red green yellow blue;
+    }
+
+  
+  </style>
+</head>
+<body style="margin: 100px;">
+<div id='k'></div>
+<br/>
+<div id='talkbubble'></div>
+</body>
+</html>
