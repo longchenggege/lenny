@@ -1,0 +1,32 @@
+选择器：
+1. *
+2、# id 选择的是单个元素
+3、class 选择的是多个元素 
+4、标记选择器，div、p、h1 选择的是多个元素
+5、派生选择器：嵌套关系的元素 ul li{}  #ul li{} 内外层元素可以是id class 标记
+6、群组选择器,逗号隔开。 #id,.class,p{}
+7、属性选择器 E1[attr] E1[attr=value] E1[attr~=value] E1[attr|=value] 
+
+
+优先级：
+
+行内样式 style>id>class>标签》通配符》继承（派生）
+优先权值：
+内联1000
+id 100
+class 10
+html标签 1
+
+疑问：显示的派生是黑色字体，
+h1{
+	color: #f00;
+}
+div h1{
+	color: #000;
+}
+<div class='a'>
+	<h1 class='b'>我是h1里面的内容</h1>
+</div>
+
+
+3、css2手册，绿色都支持，蓝色和红色以后会支持，html5+css3新增一些样式
