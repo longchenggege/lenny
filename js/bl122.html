@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>变量</title>
+	<style type="text/css">
+		
+	</style>
+</head>
+<body>
+<script>
+	//优先级：变量>函数>参数>提升
+
+	//提升，本来没有定义a,后来定义叫提升
+	/*(function(){
+		console.log(a);
+		var a = 10;
+	})()*/
+	//undefined
+
+	//参数>提升
+	/*function fn(a){
+		console.log(a);
+		var a = 23;
+	}
+	fn(4);*/
+	//4
+
+	//函数>参数
+	/*function fn(a){
+
+		console.log(a);
+		var a = 23;
+
+		function a(){
+		}
+	}
+	fn(4);*/
+	//打印函数function a(){}
+
+	//变量>函数
+	/*function fn(a){
+		var a = '变量';
+
+		console.log(a);
+		var a = 23;
+
+		function a(){
+		}
+	}
+	fn(4);*/
+	// 打印出变量
+
+	//变量查找方向
+	/*function fn(){
+		window.a = 11;
+		console.log(a);
+		var a = 10;
+	}
+	fn();*/
+	//undefined 先找本级，可以找到a,a有声明，但之前还没定义，所以不会向上层查找，返回undefined
+
+	/*function fn(){
+		window.a = 11; //属外部
+		var a = 10;    //本层
+		a = 30;        //既属于本层也属于外层，会覆盖10
+		console.log(a);
+	}
+	fn();*/
+	//30
+
+	/*function fn(){
+		window.a = 11;
+		a = 30; 
+		console.log(a);
+		var a = 10;
+	}
+	fn();
+	console.log(a);*/
+
+	function fn(){
+		a = 10;
+		console.log(a);
+		var a; //提升后把上面a=10不再是属于内部和外部，只属于内部	
+	}
+	fn();
+	console.log(a);
+	//10  undefined
+
+
+</script>
+</body>
+</html>
+
+

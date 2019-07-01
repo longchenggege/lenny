@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>js:1-1</title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+      ul,li{
+        padding:0;
+        margin: 0;
+        list-style: none;
+      }
+      #box{
+        width: 750px;
+        height: 200px;
+        border:1px solid #ccc;
+        margin: 20px auto;
+        overflow: hidden;
+        position: relative;
+      }
+    </style>
+  <script type="text/javascript" src='jsbomcase.js'></script>
+</head>
+<body>
+    
+    <script type="text/javascript">
+        var str = 'abc送达率ksdfsd';
+        document.write(str[str.length-1]);
+        document.write(str.indexOf('l'));
+        var str2 = str.replace('ab','');
+        document.write(str2+"<br/>");
+
+        var str3 = 'abcdefg';
+        //var str4 = str3.indexOf('cd');
+        //var str4 = str3.slice(4);
+        var str4 = str3.substring(1,-5);
+        document.write(str4);
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>123</title>
+		<style type="text/css">
+		body{
+			margin: 0;
+		}
+		div{
+			width: 25%;
+			height:100px;
+			float: left;
+		}
+		div:nth-child(1){
+			background: red;
+		}
+		div:nth-child(2){
+			background: green;
+		}
+		div:nth-child(3){
+			background: white;
+		}
+		div:nth-child(4){
+			background: black;
+		}
+		</style>
+		<script type="text/javascript">
+		(function(){
+			/*
+		    320     640
+		    375     750
+		    414     1242
+		    像素比 var dpr = window.devicePixelRatio; 可以获取
+			*/
+			var scale = 1/window.devicePixelRatio;
+			var meta = document.createElement('meta');
+			meta.name = 'viewport';
+			meta.content = 'initial-scale='+scale+',minimum-scale='+scale+',maximum-scale='+scale; 
+			document.head.appendChild(meta);
+		})();
+		</script>
+	</head>
+	<body style='margin:0;'>		
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+	</body>
+</html>

@@ -21,19 +21,465 @@ console.log（f12、右键检查,console可以看到）
 
 4、变量
 
-
-
-响应式布局：
-1、
-media query:
-(1)
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-(2)
-外联：
-<link media="(min-width:500px) and (orientation:landscape)" rel="stylesheet" type="text/css" href="dos.css">
-<link media="(max-width:500px)" rel="stylesheet" type="text/css" href="m.css">
-css内嵌:
-@media screen and (max-width: 800px) {
-　table td:nth-child(2),
-　table th:nth-child(2) {display: none;}
+5、函数（复用性很强）
+function fun(形参a){  //声明
+	alert(形参a);
+} 
+fun(实参a);  //调用
+（1）先声明再调用，不然报错未定义
+（2）参数，形参/实参 一一对应
+（3）arguments，函数内对象 //底数从0开始，可以对应参数值arguments[2]，也有属性length
+	function gogo(str1,str2){
+		console.log(arguments[0]);
+		console.log(arguments.length);
+	}
+(4)函数表达式
+var s =function(){
+	alert(123);
 }
+s();
+js里面调用函数要加括号s()，若没有括号会输出整个函数。
+同一个文件内：函数声明是不看调用或者函数本身的执行顺序的，函数表达式必须要先声明再调用。
+
+（5）匿名函数
+function(){
+	alert(123);
+}
+匿名函数会报错，不执行。
+但若是括号括起来，不用调用，自己执行函数体。
+(function(a,b){
+	alert(a+b);
+})(56,34)
+
+(6)函数执行环境，参数有效范围
+函数体内定义局部变量，全局不能用。 var num=1;
+函数体内定义全局变量，全局可以打印。 window.num=1;
+
+
+6、BOM -- browers object model浏览器对象模型
+
+(1) window 对象属性方法
+window.open('https://baidu.com','_blank','width=300,height=300,left=100,top=50');
+window.close()关闭当前页面。火狐浏览器只能关闭js方式打开的页面。
+a、全局变量下，定义的函数和变量，都属于window对象
+b、 boma.onclick = function(){
+	
+}
+（2）history对象
+length 当前页面历史记录条数
+back() 退
+forward() 进
+go(1/-1) 进/退
+
+(3)location对象
+location.href; 获取当前链接
+location.href = 'http://baidu.com'; 设置跳转到该链接
+location.hash 获取链接锚点后的内容 //baidu.com#hahaha  获取#hahaha
+location.search 获取问号？后内容 //baidu.com?a=1 获取?a=1
+
+（4）navigator对象，浏览器对象
+userAgent 用户代理信息,不同浏览器不同
+language 浏览器使用语言-- zh-CN
+platform 平台信息 win32
+
+(5)screen 显示器
+width/height 显示器宽高
+screenLeft/screenTop 屏幕顶部到浏览器的距离
+
+(6)定时器 setInternal(function(),2000);
+var a = setInterval('writefive()',3000); //注意要将函数用引号包起来
+
+
+7、数组
+(1)length 属性 var len = arr.length;
+(2)方法
+var c = arr.concat(brr); 合并
+var string = arr.join('|'); 数组=》字符串
+pop() 删除最后一个元素并返回该元素
+push() 添加元素
+sort() 排序
+splice()选中替换
+unshift()前面添加元素
+...
+（3）冒泡排序
+
+
+8、字符串
+定义：
+a: var s='s';
+b: var s = new String();
+（1）typeof()
+注意:
+js 数据类型(Number,String,Boolean,Undefined,Null,Object)没有数组
+var s = new Array/String/Number();定义都是object，对象内再区分可以用instanceof
+
+
+（2）属性
+length
+(3)方法
+str.indexOf() 返回字符在字符串中第一次出现位置，没有返回-1
+str.lastindexOf()字符在字符串中最后一次出现的位置
+str.replace('aa','') 替换
+slice(1,3) 截取1-3，取前不取后
+substring(1,3) 和 slice 使用相同，只在负数时候不同，slice负数从后往前截取，substring返回整个字符串。
+trim()去除字符串前后空格。
+toUpperCase()、toLowerCase() 字符串转化为大写、小写
+split('')字符串按分隔符拆分，返回数组
+
+9、Math （常用下面几个）
+Math.min(1,2,3) 最小
+Math.max(1,2,3,4) 最大
+Math.floor(3.141); 取整，舍弃小数
+Math.ceil(3.2); 舍小数，整数+1，小数后是0整数不会+1
+Math.abs(-5);取绝对值
+Math.sqrt(64);==》8 开平方
+Math.random(); 取0-1随机数
+有个应用经常会使用，获取(min,max)之间的随机值 Math.random()*(max-min)+min
+Math.round(3.4); 四舍五入取整
+Math.PI
+
+10、Date();
+var date = new Date();
+date.getTime() 1970 01 01 0:0到目前时间戳 毫秒数
+date.getFullYear() 年
+date.getMonth() 月 要+1，老外从0开始算
+getDate() 日
+date.getDay() 星期x
+date.getHours() 小时
+date.getMinutes()
+date.getSeconds()
+
+11、DOM document object model（文档对象模型）
+（1）获取节点
+getElementById()
+getElementsByTagName()
+getElementByClassName() //ie8之前版本不支持
+
+aid.className //获取元素的class
+
+（2）DOM树：
+document-->html-->head|body-->div|p|h1
+
+（3）节点分类：
+元素节点 div
+文本节点 <span>123</span>
+属性节点 <img alt=''>
+...
+
+（4）DOM对象（节点）的属性和操作
+<ul id='y'>
+	<li>1</li>
+	<li>2</li>
+	<li>3</li>
+</ul>
+
+a、childNodes 所有子节点集合,含元素和文本，上面ul下子节点有7个，因为包括之间的空格/换行符
+
+b、nodeName 返回大写节点
+c.nodeType
+元素节点 返回1
+属性节点 返回2
+文本节点 返回3
+...有12个
+
+d、firstChild 获取第一个子元素 //上面ul第一个子元素是空格（text)
+lastChild 获取最后一个子元素
+firstElementChild 获取第一个子元素节点 //上面ul第一个子元素是空格（li节点) ie<=8不支持
+lastElementChild 获取第一个子元素节点  //ie<=8不支持
+
+parentNode 获取父节点
+nodeValue 文本节点的值
+
+getAttribute(); 获取节点属性 src/class/alt/title/style
+和 dom.src（会自动获取全地址+域名）/dom.className/ 	区别
+setAttribute(); 设置节点属性
+removeAttribute(); 移除节点属性
+
+createElement(节点名称) 创建节点
+createTextNode(文本内容) 创建文本节点
+父元素.appendChild(追加子元素)
+父元素.insertBefore(添加的内容,添加到哪个节点之前)
+父元素.removeChild(子元素)
+
+add()  new Option()向下拉列表添加一个选项。 （只专属于 select 对象的方法） 
+
+
+e、元素样式 -- style
+i.dom.style.width 只能获取行内样式style=""，但写在<style>之间样式获取不到。
+i1:>ie8和其他浏览器 getComputedStyle(元素,null).样式
+i2:<=ie8 元素.currentStyle.样式
+合并兼容总结方法：
+function getAttr(dom,value){
+	if(dom.currentStyle){
+		return dom.currentStyle[value];
+	}else{
+		return getComputedStyle(dom,null)[value];
+	}
+}
+
+f、元素大小和偏移
+offsetHeight/offsetWidth 元素宽度+计算边框+计算padding,没有单位，纯数字(px)，只能获取，不能设置
+和bom.style.width区别（有px,只获取style值不会管padding和边框，可以设置值）
+
+offsetLeft/offsetTop 没有定位的时候，就是距离浏览器左边框和上边的距离，若有定位，则是相对定位元素的偏移量
+
+scrollLeft/scrollTop 拖动滚动条的距离
+
+g、可视宽高和混杂模式
+标准模式：document.documentElement===> 文档的文档元素--可视区
+混杂模式：document.body==> 文档的body --body元素
+clientWidth、clientHeight/scrollTop
+
+标准：document.documentElement.scrollTop 谷歌可以获取ie不能
+混杂：document.body.scrollTop 谷歌不可以获取ie可用
+
+综合兼容：var dom = document.documentElement||document.body;
+
+
+12、事件
+a/冒泡，由内向外
+b/鼠标事件
+	onclick 
+	dondbclick 
+	oncontextmenu 右击事件
+	onmouseover 移入时候触发一次
+	onmouseout 移出
+	onmousemove 移入，鼠标在dom内或移动都会触发，无限触发体验很差
+	onmousedown 鼠标按下
+	onmouseup 鼠标弹出
+c/键盘事件
+	onkeydown
+	onkeyup
+	keyCode属性
+	document.onkeydown = function(e){
+		console.log(e.keyCode);
+	}
+d/其他类事件
+	onload 事件 （dom）
+	onfocus 得到焦点
+	onblur 失去焦点
+	onresize 浏览器或框架尺寸发生变化触发
+	onscroll 滚动条发生变化
+	onchange 文本值发生变化 //select
+
+e/事件处理程序（添加和删除事件）
+	*html事件处理程序
+	<div class='c' onclick="func(1);">我是绑定click事件</div>
+	缺点：和html在一起，要修改事件要修改两处
+	*DOM0级事件处理程序
+	dom.onclick = function(){
+	}
+	缺点：同条件后面事件会覆盖前面
+	*DOM2级事件处理程序
+	语法： dom.addEventListener(事件名称,函数,false|true)
+	参数：不需要加on, false代表冒泡，true代表捕获
+	事件会先后依次执行，不会覆盖，ie8以下（<=8）不支持
+	*ie事件处理程序
+	dom.attachEvent('onclick',function(){
+		
+	})
+	*跨浏览器事件处理程序,兼容
+	function setEvent(dom,evt,fn){
+		if(dom.addEventListener){
+			dom.addEventListener(evt,fn,false);
+		}else if(dom.attachEvent){
+			dom.attachEvent("on"+evt,fn);
+		}else{
+			dom["on"+evt] = fn;
+		}
+	}
+	setEvent(box,'click',function(){
+		alert(1);
+	})
+	
+f/删除事件处理程序
+	同上面添加
+	function removeEvent(dom,evt,fn){
+		if(dom.addEventListener){
+			dom.removeEventListener(evt,fn,false);
+		}else if(dom.detachEvent){
+			dom.detachEvent("on"+evt,fn);
+		}else{
+			dom["on"+evt] = null;
+		}
+	}
+g、事件对象
+dom.onclick = function(e){
+	*非ie --- 参数 e
+	*ie -- var evt = window.event;
+	兼容写法： ar evt = window.event||e;
+}
+
+h/事件对象的属性
+	* target 非ie -- nodeName
+	* srcElement (ie中)
+	兼容写法 var tar = 事件对象.target||事件对象.srcElement
+	var e = window.event||e;
+	var tag = e.srcElement||e.target;
+	*clientX 返回鼠标距离浏览器左侧的值
+	 document.onclick = function(e){
+	 	alert(e.clientX);
+	 }
+	*clientY 返回鼠标距离浏览器左侧的值
+
+i/事件委托
+	冒泡的原理
+	优点：
+	*性能较好（提高）
+	*即使后添加的元素也能获取之前设置效果，如绑定的函数
+	案例是将绑定li的元素for循环添加事件 换成 将事件绑定在父元素。
+	
+j/阻止冒泡和默认行为
+	--阻止冒泡
+	*非ie,事务对象e.stopPropagation()
+	*ie,事务对象e.cancelBubble = true
+	*兼容 if(e.stopPropagation){
+			e.stopPropagation();
+		}else{
+			e.cancelBubble = true;
+		}
+	--阻止默认行为
+	*非ie e.preventDefault()
+	*ie e.returnValue = false;
+	*兼容同上
+
+
+
+
+13、购物车
+（1）table里面dom的缩写：
+tbody--document.getElementByTag('tbody')--tBodies
+tr--document.getElementByTag('tr')--rows[]
+td--document.getElementByTag('td')--cells[]
+var v = tab.tBodies[0].rows[0].cells[1].innerHTML;
+
+（2）跳过购物车代码敲打
+
+14、正则表达式  // str字符串里面是否有符合reg 规则的字符串，有返回true,否则false.
+（1）场景：表单验证、解析url参数、筛选
+（2）模式：
+	字面量形式 -- /a/
+	构造函数形式 -- new RegExp()
+	区别：字面量形式不能放入变量和函数，但构造函数形式可以。
+	例如：var num = 'bbc';
+	var reg = /num/; //这样不能读出变量替换出bbc，只会输出num
+（3）方法
+    test:看内容是否和正则匹配。reg.test(str)返回布尔值。true、false
+    exec:看内容是否和正则匹配,匹配--数组，否则返回null。
+
+（4）正则表达式限定符
+    \w字数数字下划线 \d数字
+	^ 以字符串开始  $ 以字符串结束  例如:/^\d$/ 注意是在//内
+	i 不区分大小写 g 全文匹配 --  若有多处符合条件都会处置，否则只处理一处 str.replace(reg,'#')
+	m 隔行也能匹配如（^ 和 \n），一般配合\g使用
+	例如：reg3 = /^a\w/gm;  str3 = 'ab\nac\ndab\nef';
+	i/g/m 在//外使用
+	{n}
+	{n,}
+	{n,m}
+	* 0或不限
+	+ 至少一次
+	? 0或1次
+	| 或
+	[] 匹配中括号内任意一个字符
+	[^]除括号内任意字符
+	[0-9] 匹配0-9任意数字
+	[a-z] 匹配a-z小写字母
+	[A-Z] 匹配A-Z大写字母
+	\d 数字
+	\D 非数字
+	\w 字母数字下划线
+	\W 非字母数字下划线
+	\s 空格
+	\S 非空格
+	\b 边界
+	. 除换行符外元素
+
+	转义：将有特殊含义符号转成没有特殊意义， 如\.就是单纯匹配.，而不是除换行符外元素
+
+
+ (5)分组 -- ()把内容组合起来
+	   字符类的用法 RegExp.$1...$99
+	   a、要使用字符类，必须使用一下正则
+	   b、要使用字符类返回结果，必须正则中有分组
+	   例如：
+	    var reg4 = /(baidu)(vv)/;
+		var str4 = 'vbaiduvvbaidu';
+		reg4.test(str4);
+		alert(RegExp.$1); --输出匹配到的（）里面的内容 baidu
+	   
+
+	(6)应用的方法有 search/match/replace
+		a、search
+		如果匹配返回下标位置
+		如果不匹配返回-1
+		不支持全局
+		b、match
+		如果匹配返回数组，否则返回null
+		和exec区别，match支持全局，exec不支持全局，但可以通过while(reg.exec(str)) 遍历出来。
+		c、replace
+		匹配替换，支持全局
+
+15、js变量、作用域
+变量：
+（1）动态属性
+	创建对象（ab两种方式）：
+	a、构造函数创建：var newobj = new Object()
+	b、字面量创建：var obj = {};
+
+	对象添加属性： 对象.属性名称 = 值
+	对象添加方法： 对象.方法名称 = function(){}
+
+(2)复制变量值
+	a、引用类型(堆栈类型)
+	var obj = new Object() 
+	var obj2 = obj;
+	复制相当于复制一个指向一个地址的名称。所以操作都是对同一个地址信息操作，会互相影响。
+	b、基本类型
+	var a = 'abc';
+	var b =a;
+	复制相当于键值对都复制，各自操作互不影响。
+(3)传递参数
+函数(参数):参数==》只能传递值
+（4）检测类型:一般会用typeof()判断变量类型，但无论引用的是什么类型的对象，它都返回 "object"。
+instanceof==>返回布尔值
+if(str instanceof Array){
+	
+}
+作用域：
+（1）全局范围内，声明的变量和函数，其实是windows的属性或方法。
+（2）例如函数中声明一个局部变量在全局中无法使用，但若声明的是全局变量 window.a = '10';函数外也能调用alert(a);
+ (3)作用域链：内部有权访问外部局部变量(就近本层没有，从里往外查找)，外部无权访问内部变量
+ var a=10;
+ function fn(){
+ alert(a);//可以使用
+ }
+ fn();
+
+ (function(){
+	var a =b= 1;
+})();
+alert(a);
+ (4)优先级：变量>函数>参数>提升 bl122.html文件
+ 提升：
+ function(){
+  console.log(a);
+  var num =12;
+ }
+ //undefined
+ 函数内的this相当于window
+
+var a---局部a
+window.a---全局a
+a ---属于局部a,也属于全局a
+
+function fn(){
+	a = 10;
+	console.log(a);
+	var a; //提升后把上面a=10不再是属于内部和外部，只属于内部	
+}
+垃圾回收机制：
+（1）标记清除 函数内变量，函数引用完后，就自动清除了。
+（2）引用计数 不常用，次数
+（3）手动清除 将对象和变量或函数--赋值 == null
+

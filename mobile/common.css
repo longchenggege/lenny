@@ -1,0 +1,208 @@
+body{
+	font-familay:helvetica;
+	margin: 0;
+}
+body *{
+	-webkit-text-size-adjust:100%;
+	-webkit-user-select:none;
+}
+a,input,button{
+	-webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+input,button{
+	-webkit-appearance:none;
+	border-radius:0;
+}
+a{
+	text-decoration: none;
+}
+input{
+	outline: none;
+	vertical-align: middle;
+}
+ul{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+img{
+	vertical-align: middle;
+}
+h3,h4,p{
+	margin: 0;
+}
+.left{
+	float: left;
+}
+.right{
+	float: right;
+}
+.clearfix:after{
+	content: '';
+	display: block;
+	clear: both;
+}
+
+/* end common css setting  */
+
+header{
+	width: 15rem;
+	height: 1.2rem;
+	padding: 0.4rem 0;
+	color: #fff;
+	line-height: 1.2rem;
+	font-size: 0.56rem;
+	background: #d22147;
+}
+header a.left{
+	width:4.6rem;
+	text-align: center;
+	color: #fff;
+}
+header a.left span{
+	width: 0.64rem;
+	height: 0.32rem;
+	display: inline-block;
+	background: url(images/ico_01.png) no-repeat;
+	background-size: 100%;
+}
+header input{
+	width:7.68rem;
+	height: 1.2rem;
+	border-radius: 0.2rem;
+	background: #ae3e56 ;
+	border: none;
+	text-indent: 1rem;
+	color: #e2c2c9;
+} 
+
+header input::-webkit-input-placeholder{
+	color: #e2c2c9;
+}
+header input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+	color: #e2c2c9;
+}
+header input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+	color: #e2c2c9;
+}
+header input:-ms-input-placeholder{  /* Internet Explorer 10-11 */ 
+	color: #e2c2c9;
+}
+header a.right{
+	width:2.68rem;
+	height: 100%;
+	text-align: center;
+	color: #fff;
+}
+header a.right span{
+	height: 1.2rem;
+	padding-left: 0.8rem;
+	background: url(images/ico_03.png) no-repeat left center;
+	background-size: 0.6rem;
+}
+#banner{
+	width: 100%;
+}
+#banner a{
+	display: block;
+}
+#banner img{
+	width: 15rem;
+	height: 5.2rem;
+}
+#nav{
+	padding:0.6rem 0;
+	clear: both;
+	overflow: hidden;
+	background: #f2f0f0;
+}
+#nav li{
+	width: 3.75rem;
+	float: left;
+	margin: 0.2rem 0;
+	text-align: center;
+	font-size: 0.56rem;
+}
+#nav p a{
+	color: #666;
+}
+#nav li img{
+	width: 2rem;
+	height: 2rem;
+}
+#ad1,#ad2{
+	padding-top: 0.4rem;
+	overflow: hidden;
+	background: #f2f0f0;
+}
+#ad2{
+	padding:0.4rem 0;
+	background: #f2f0f0;
+}
+#ad1 a{
+	display: inline-block;
+	width: 5rem;
+	float: left;
+}
+#ad2 a{
+	display: block;
+}
+#ad1 img,#ad2 img{
+	width: 100%;
+}
+#text{
+	
+}
+#text h3{
+	height: 1.6rem;
+	line-height: 1.6rem;
+	border-bottom: 1px solid #ccc;
+	font-size: 0.72rem;
+	text-indent: 1.2rem;
+	font-weight: normal;
+}
+#text .list {
+	padding: 0.4rem;
+	border-bottom: 1px solid #ccc;
+	clear: both;
+}
+#text .left img{
+	width: 4.2rem;
+}
+#text .right{
+	width: 9.5rem;
+}
+.list h4 a{
+	color: #000;
+	font-size: 0.72rem;
+	line-height: 1.2rem;
+	margin-bottom: 0.4rem;
+}
+.list .desc{
+	font-size: 0.56rem;
+	color: #999;
+}
+.list .listb{
+	font-size: 0.56rem;
+	margin-top: 0.4rem;
+}
+.listb strong{
+	color: #FF0000;
+	margin: 0 0.1rem;
+}
+.listb .discount{
+	width: 2rem;
+	height: 0.9rem;
+	display: inline-block;
+	background: url(images/ico_05.png) no-repeat;
+	color: #fff;
+	background-size: cover;
+	text-align: center;
+	padding-left: 0.2rem;
+}
+.listb .lucky{
+	float: right;
+	padding-left: 1rem;
+	background: url(images/ico_06.png) no-repeat left center;
+	background-size: 0.8rem;
+}

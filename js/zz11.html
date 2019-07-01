@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>正则</title>
+	<style type="text/css">
+		
+	</style>
+</head>
+<body>
+	<div id='vs'>
+		123
+	</div>
+
+<script type="text/javascript">
+	/*var reg2 = new RegExp('a');
+	alert(reg2);*/
+	
+	/*var reg = /^\d{3,4}\w$/;
+	var str = '3554e-';*/
+
+//i 忽略大小写
+	/*var reg = /aBC/i;
+	var str = 'abcdef';*/
+
+//g 全局匹配 ，匹配到的每一个元素都会执行替换一次，否则只有第一个
+	/*var reg2 = /a\w/g;
+	var str2 = 'abacdaef';
+	var res = str2.replace(reg2,'#');
+	alert(res);*/
+
+//m 换行匹配
+	/*var reg3 = /^a\w/gm; //^需要以a开始，若没有m换行匹配，只有第一个符合条件
+	var str3 = 'ab\nac\ndab\nef';
+	var res2 = str3.replace(reg3,'#');
+	alert(res2);*/
+
+	var reg4 = /baidu/g;
+	var str4 = 'vbaiduvveebaiduxx';
+	
+	while(res = reg4.exec(str4)){
+		document.write(res)
+	}
+
+	//alert(res);
+
+	/*reg4.test(str4);
+	alert(RegExp.$1); */
+
+	/*var res3 = str4.replace(reg4,'<b>$1</b>');
+	document.write(res3);*/
+
+	//alert(reg.test(str));
+	
+	//alert(typeof(reg.exec(str)));
+</script>
+</body>
+</html>

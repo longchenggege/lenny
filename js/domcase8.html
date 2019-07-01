@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title></title>
+	<style type="text/css">
+		ul,li{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		#box{
+			width: 300px;
+			height: 300px;
+			border:1px solid #ccc;
+			margin-top: 10px;
+		}
+		#box li{
+			border-bottom: 1px solid #ccc;
+			line-height: 30px;
+			padding-left: 10px;
+		}
+
+	</style>
+</head>
+<body>
+	<h1>留言板</h1>
+	<input type="text" name="msg" id='msg'>
+	<input type="submit" value="留言" id='sub'>
+	<div id="box">
+		
+			<li>哈哈哈1 <a href="javascript:;">删除</a></li>
+			<li>哈哈哈2 <a href="javascript:;">删除</a></li>
+			<li>哈哈哈3 <a href="javascript:;">删除</a></li>
+			<li>哈哈哈4 <a href="javascript:;">删除</a></li>
+		
+	</div>
+	<script type="text/javascript">
+		var msg = document.getElementById('msg');
+		var box = document.getElementById('box');
+		var sub = document.getElementById('sub');
+
+		sub.onclick = function(){
+			var content = msg.value;
+			if(content!=''){
+				var newnode = document.createElement('li');
+				newnode.innerHTML = content+' <a href="javascript:;">删除</a>';
+				box.appendChild(newnode);
+			}
+
+			//这一块要放入点击事件中，因为页面没有刷新的时候，新加入的 a 并没有绑定click 事件。
+			var as = box.getElementsByTagName('a');
+			for(var i=0;i<as.length;i++){
+				as[i].onclick = function(){
+					alert(1);
+					//this.parentNode.style.display = 'none';
+					box.removeChild(this.parentNode);
+				}
+			}
+		}
+
+		
+	</script>
+</body>
+</html>

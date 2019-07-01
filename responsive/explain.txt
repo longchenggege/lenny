@@ -6,7 +6,7 @@
 2、<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1">
 视口宽度：320
 布局宽度：1000
-当视口宽度只有320时候，去打开布局1000宽度的页面,添加这段代码，会将1000的布局框架
+当视口宽度只有320时候，去打开布局1000宽度的页面,添加这段代码，会将1000的布局框架按比例压缩
 
 单位：
 绝对单位：px
@@ -30,3 +30,28 @@
 
 网址：
 ehcto.ehcto.com
+
+
+//
+像素：
+
+
+
+
+响应式布局：
+1、
+media query:
+(1)
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+(2)
+外联：
+<link media="(min-width:500px) and (orientation:landscape)" rel="stylesheet" type="text/css" href="dos.css">
+<link media="(max-width:500px)" rel="stylesheet" type="text/css" href="m.css">
+css内嵌:
+@media screen and (max-width: 800px) {
+　table td:nth-child(2),
+　table th:nth-child(2) {display: none;}
+}
+
+//
+循环：在有限条件内，可以反复不断做一些事。

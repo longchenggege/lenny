@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>js:1-1</title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+      ul,li{
+        padding:0;
+        margin: 0;
+        list-style: none;
+      }
+    </style>
+</head>
+<body>
+    <div>
+        用户名：<input type="text" name="user" id='user'><hr/>
+        密码：<input type="text" name="psd" id='psd'><hr/>
+        随机数：<input type="text" name="rand" id='rand'> <span id='code'>123</span><hr/>
+        <input type="submit" name="" value="登录" id='btn'>
+
+    </div>
+    <script type="text/javascript">
+        /*var arr = [1,2,3];
+        var str = arr.join(',');
+        document.write(str);
+        document.write("<br/>");
+        document.write(Math.min(3,2,4));
+        document.write("<br/>");
+        document.write(Math.ceil(3.01));*/
+
+        var code = document.getElementById('code');
+        //获取随机数
+        var randnum = Math.floor((Math.random()*8000)+2000); //parseInt 取整，要保证4位数
+        code.innerHTML = randnum;
+
+        var btn = document.getElementById('btn');
+        var rand = document.getElementById('rand');
+        var user = document.getElementById('user');
+        var psd = document.getElementById('psd');
+        btn.onclick = function(){
+            if(user.value=='admin'){
+                //alert('1');
+                if(psd.value=='admin'){
+                    //alert('2');
+                    if(rand.value==randnum){
+                        alert('对了');
+                    }
+                }
+            }else{
+                alert('错了');
+            }
+        }
+    </script>
+</body>
+</html>

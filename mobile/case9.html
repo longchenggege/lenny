@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,height=device-height,user-scalable=no" />
+		<title>flex布局导航条案例</title>
+		<style>
+			nav{
+				text-align: center;
+				height: 50px;
+				line-height: 50px;
+				display: flex;
+			}
+			nav a{
+				flex-grow: 1;
+			}
+		</style>
+	</head>
+	<body>
+		<nav>
+			<a href=""><span>首页</span></a>
+			<a href=""><span>新闻</span></a>
+			<a href=""><span>视频</span></a>
+			<a href=""><span>产品</span></a>
+			<a href=""><span>关于我们</span></a>
+			<a href="" class='sign sign_in'><span>登录</span></a>
+			<a href="" class='sign sign_in'><span>注册</span></a>
+		</nav>
+	</body>
+</html>

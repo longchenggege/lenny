@@ -1,0 +1,55 @@
+测试页面
+<script>
+console.log(123);
+var Tookie = function (c) {
+    this.getDomainName = function () {
+        var hostname = location.hostname.split(".");
+        console.log(hostname);
+        var l = hostname.length;
+        if (l < 2) return "." + location.hostname;
+        var dom = "." + hostname[l - 2] + "." + hostname[l - 1];
+        console.log(dom+'22');
+        return dom;
+        
+    };
+
+    this.defaults = {
+        name: "LcRef", days: 365, path: "/", domain: this.getDomainName(), delimiterItem: "|", delimiterRow: "$", numOfCookies: 25
+    }; // defaults 
+    this.opts = c || this.defaults;
+
+    this.collect = function () {
+        if (document.referrer.toLowerCase().indexOf("tg=") > 0 || document.location.href.toLowerCase().indexOf("tg=") > 0 || document.referrer.toLowerCase().indexOf("tag=") > 0 || document.location.href.toLowerCase().indexOf("tag=") > 0 || document.referrer.toLowerCase().indexOf("a=") > 0 || document.location.href.toLowerCase().indexOf("a=") > 0 || document.referrer.toLowerCase().indexOf("gclid=") > 0 || document.location.href.toLowerCase().indexOf("gclid=") > 0) {
+
+            var a = this.unpack(this.getCookie()), b = new Date;
+            this.opts.numOfCookies <= a.length && a.pop();
+            a.push([Date.parse(b.toUTCString()), encodeURIComponent(location.href), encodeURIComponent(document.referrer), ""]);
+            this.setCookie(this.pack(a));
+        }
+    };
+
+    this.pack = function (a) {
+        for (var b = "", d = 0; d < a.length; d++) {
+            d && (b += this.opts.delimiterRow);
+            for (var c = 0; c < a[d].length; c++)
+                c && (b += this.opts.delimiterItem), b += a[d][c]
+        }
+        return b
+    };
+
+    this.unpack = function (a) {
+        for (var a = a.length ? a.split(this.opts.delimiterRow) : [], b = 0; b < a.length; b++) a[b] = a[b].split(this.opts.delimiterItem); return a
+    }; 
+	this.getCookie = function () {
+        var a = RegExp(this.opts.name + "=s*(.+?)(;|$)"); try {
+            return a.exec(document.cookie)[1]
+        } catch (b) {
+            return ""
+        }
+    };
+    this.setCookie = function (a) {
+        var b; b = new Date; b.setTime((new Date).getTime() + 864E5 * this.opts.days); document.cookie = this.opts.name + "=" + a + "; expires=" + b.toUTCString() + "; path=" + this.opts.path + "; domain=" + this.opts.domain
+        setLocalStorage("LcRef", a);
+    }
+}; 
+</script>

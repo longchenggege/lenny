@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>事件委托冒泡</title>
+	<style type="text/css">
+		#d1{
+			
+		}
+		
+	</style>
+</head>
+<body>
+	<div id='d'>
+		<ul id='uls'>
+			<li>11</li>
+			<li>22</li>
+			<li>33</li>
+		</ul>
+	</div>
+	<input type="button" value="加元素" id="btn">
+	
+	<script>
+
+		/*第一种方式，新增元素不会获取 js li点击背景色变色。
+		var btn = document.getElementById('btn');
+		var uls = document.getElementById('uls');
+		btn.onclick = function(){
+			var abc = document.createElement('li');
+			var txt = document.createTextNode('456');
+			abc.appendChild(txt);
+			uls.appendChild(abc);
+		}
+		//每个li点击后背景变红
+		var lis = document.getElementsByTagName('li');
+		for(var i=0;i<lis.length;i++){
+			lis[i].onclick = function(){
+				this.style.background = 'red';
+			}
+		}*/
+
+		//第二种方式 事件委托
+		var btn = document.getElementById('btn');
+		var uls = document.getElementById('uls');
+		btn.onclick = function(){
+			var abc = document.createElement('li');
+			var txt = document.createTextNode('456');
+			abc.appendChild(txt);
+			uls.appendChild(abc);
+		}
+		uls.onclick = function(e){
+			//alert(1);
+			var e = window.event||e;
+			if(e.target.nodeName=="LI"){
+				e.target.style.background = 'red';
+			}
+		}
+
+	</script>
+</body>
+</html>

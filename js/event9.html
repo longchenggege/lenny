@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>事件</title>
+	<style type="text/css">
+		#d1{
+			width: 400px;
+			height: 400px;
+			margin: 100px auto;
+			border:1px solid #ccc;
+			background: #f00;
+		}
+		#d2{
+			width: 200px;
+			height: 200px;
+			border:1px solid #ccc;
+			background: #0f0;
+		}
+	</style>
+</head>
+<body>
+	<div id='d1'>
+		<div id='d2'>
+			
+		</div>
+	</div>
+	<input type="submit" value="按下" id='btn'>
+	
+	<div class='c' onclick="alert(1);">我是绑定click事件</div>
+	<div class='d' id="d">我绑定事件</div>
+
+	<div id="a">
+		我是box
+		<p>我是p里面内容</p>
+		<span>我是span里面内容</span>
+	</div>
+
+	<div>
+		<ul id='uls'>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+		</ul>
+	</div>
+	<input type="button" name="" value="加元素" id='adde'>
+
+
+	<script type="text/javascript">
+		var d1 = document.getElementById('d1');
+		var d2 = document.getElementById('d2');
+		var btn = document.getElementById('btn');
+		/*鼠标事件*/
+		/*d1.onclick = function(){
+			alert(1);
+		}
+		d2.onclick = function(){
+			alert(2);
+		}*/
+
+		/*d1.onmouseover = function(){
+			alert('移入over');
+		}
+		d1.onmousedown = function(){
+			console.log('按下');
+		}
+		d1.onmouseup = function(){
+			console.log('弹出');
+		}
+		document.onkeydown = function(){
+			console.log('弹出1');
+		}
+		document.onkeyup = function(e){
+			//if(e.keyCode == 13 )
+			console.log(e.keyCode);
+		}
+		
+		btn.addEventListener('click',function(){
+			alert(1);
+		},false)
+		btn.addEventListener('click',function(){
+			alert(2);
+		},false)
+		var d = document.getElementById('d');
+		d.onclick = function(e){
+			alert(window.event);
+		}
+
+		var a = document.getElementById('a');
+		a.onclick = function(e){
+			var e = window.event||e;
+			alert(e.srcElement);
+		}*/
+
+		
+		
+	</script>
+</body>
+</html>

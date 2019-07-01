@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>小人快跑</title>
+	<style type="text/css">
+		#d1{
+			
+		}
+		
+	</style>
+</head>
+<body>
+	<div id='d1'>
+		<img src="imgs/lboy.jpg" id='pp'>
+	</div>
+	
+	<script>
+
+		var pp = document.getElementById('pp');
+		var index = 0;
+
+		function move(way){
+			index++;
+			if(index>4){
+				index = 0;
+			}
+			pp.src = 'imgs/img'+way+'-'+index+'.jpg';
+		}
+
+		document.onkeydown = function(e){
+			var e = window.event||e;
+			switch(e.keyCode){
+				case 37:
+					pp.style.left = pp.offsetLeft-10+'px';
+					move('left');
+					break;
+				case 38:
+					pp.style.top = pp.offsetLeft-10+'px';
+					move('up');
+					break;
+				case 39:
+					pp.style.left = pp.offsetLeft+10+'px';
+					move('right');
+					break;
+				case 40:
+					pp.style.top = pp.offsetLeft+10+'px';
+					move('down');
+					break;
+			}
+		}
+	</script>
+</body>
+</html>

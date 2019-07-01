@@ -1,0 +1,8 @@
+css 写过程中总结
+
+1、子元素浮动，父级就要清除浮动
+2、box-sizing:border-box; 块设置该属性后，边框不会变化尺寸。
+3、设置父元素字体大小为0, font-size:0  可以避免换行符解析成空格 具体了解：https://www.cnblogs.com/diantao/p/6052355.html
+4、移动端小图标比较通用，可以使用矢量图，放大不会失真，位图放大会失真。
+5、标签嵌套一定要符合规则标准，a标签里面不要嵌套块元素，可以使用span后设置display:block/inline-block
+6、

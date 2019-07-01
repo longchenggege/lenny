@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>鼠标拖拽</title>
+	<style type="text/css">
+		#d1{
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+		img{
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+	</style>
+</head>
+<body>
+	
+	<img src="imgs/airp.gif" id='d1'>
+
+	<img src="imgs/bullet1.png" id='b0' style="display: none;">
+	<img src="imgs/bullet1.png" id='b1' style="display: none;">
+	<img src="imgs/bullet1.png" id='b2' style="display: none;">
+	<img src="imgs/bullet1.png" id='b3' style="display: none;">
+	<img src="imgs/bullet1.png" id='b4' style="display: none;">
+
+	
+<script>
+	var dd = document.getElementById('d1');
+	document.onkeydown = function(e){
+		//alert(e.keyCode);
+		//alert(1);
+		var e = window.event||e;
+		switch(e.keyCode){
+			case 37:
+			dd.style.left = dd.offsetLeft-10+'px';
+			break;
+
+			case 38:
+			dd.style.top = dd.offsetTop-10+'px';
+			break;
+
+			case 39:
+			dd.style.left = dd.offsetLeft+10+'px';
+			break;
+
+			case 40:
+			dd.style.top = dd.offsetTop+10+'px';
+			break;
+
+			case 32:
+			game(dd.offsetTop,dd.offsetLeft+dd.offsetWidth/2)
+			break;
+		}
+	}
+
+	function game(y,x){
+		for(var i=0;i<5;i++){
+			var c = document.getElementById('b'+i);
+			if(c.style.display=='none'){
+				//console.log(c);
+				c.style.display = 'block';
+				c.style.left = x+'px';
+				c.style.top = y+'px';
+				break;
+			}
+							
+		}
+	}
+
+	setInterval(function(){
+		for(var i=0;i<5;i++){
+			var c = document.getElementById('b'+i);
+			c.style.top = c.offsetTop-5+'px';
+			if(c.offsetTop<0){
+				c.style.display='none';
+			}
+		}
+	},100);
+
+</script>
+</body>
+</html>
+
+
+//没完，子弹一块

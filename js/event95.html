@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>放大镜效果</title>
+	<style type="text/css">
+		#d1{
+			width: 900px;
+			height: 800px;
+			padding: 20px;
+			margin: 20px auto;
+			border:1px solid #ccc;
+		}
+		#min{
+			overflow: hidden;
+			position: relative;
+			border:1px solid #ccc;
+			float: left;
+			width: 300px;
+			height: 300px;
+			/* display: table-cell;
+			vertical-align: middle;
+			text-align: center; 
+			overflow: hidden;*/
+		}
+		.imgbox{
+			
+		}
+		#min img{
+			max-width: 100%;
+		}
+		#lit{
+			width: 100px;
+			height: 100px;
+			background: blue;
+			opacity: 0.5;
+			position: absolute;
+			display: block;
+			top: 0;
+			left: 0;
+			display: none;
+		}
+		#max{
+			width: 300px;
+			height: 300px;
+			border:1px solid #ccc;
+			float: right;
+			overflow: hidden;
+			display: none;
+			position: relative;
+		}
+		#maximg{
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+		
+	</style>
+</head>
+<body>
+	<div id='d1'>
+		<div id="min">
+			<img src="imgs/x.jpg" id='cimg'>
+			<div id="lit"></div>
+		</div>
+		<div id='max'>
+			<img src="imgs/d.jpg" id='maximg'>
+		</div>
+	</div>
+	
+	<script>
+		/*function fiximg(wimg,maxwidth,maxheight){
+			var rwidth = wimg.width;
+			console.log(wimg);
+			var rheight = wimg.height;
+			if(rwidth<=maxwidth&&rheight<=maxheight){
+				wimg.width = rwidth;
+				wimg.height = rheight;
+			}else {
+				if(rwidth/rheight<maxwidth/maxheight){
+					wimg.height = maxheight;
+					wimg.width = wimg.width*maxheight/wimg.height;
+				}else{
+					wimg.width = maxwidth;
+					wimg.height = wimg.height*maxwidth/wimg.width;
+				}
+			}
+		}
+		window.onload = function(){
+			var xx = document.getElementById('cimg');
+			fiximg(xx,400,400);
+		}*/
+
+		var min = document.getElementById('min'),
+			max = document.getElementById('max'),
+			b = document.getElementById('lit');
+			maximg = document.getElementById('maximg');
+
+			var scrollleft = document.body.scrollLeft||document.documentElement.scrollLeft;
+			var scrolltop = document.body.scrollTop||document.documentElement.scrollTop;
+		min.onmousemove = function(e){
+			max.style.display = 'block';
+			b.style.display = 'block';
+			//console.log(e.clientX);
+			//console.log(min.offsetLeft);
+			x = e.clientX-min.offsetLeft-b.offsetWidth/2;
+			y = e.clientY-min.offsetTop-b.offsetHeight/2;
+			//console.log(x);
+			if(x<0){
+				x = 0;
+			}else if(x>min.offsetWidth-b.offsetWidth){
+				x = min.offsetWidth-b.offsetWidth;
+			}
+			if(y<0){
+				y = 0;
+			}else if(y>min.offsetHeight-b.offsetHeight){
+				y = min.offsetHeight-b.offsetHeight;
+			}
+			b.style.left = x+'px';
+			b.style.top = y+'px';
+			//console.log(x);
+			maximg.style.left = -8/3*x+50 + 'px';
+			maximg.style.top = -8/3*y +50+ 'px';
+		}
+		min.onmouseout = function(){
+			max.style.display = 'none';
+			b.style.display = 'none';
+		}
+	</script>
+</body>
+</html>

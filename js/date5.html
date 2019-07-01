@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<span id='hour'>00</span>
+:
+<span id='min'>00</span>
+:
+<span id='sec'>00</span>
+
+-------------------
+
+<script type="text/javascript">
+	var date = new Date();
+	var t = date.getTime();
+	var y = date.getFullYear();
+	var m = date.getMonth();
+	var d = date.getDay();
+	var h = date.getHours();
+	var dd = date.getDate();
+	document.write(t); document.write("<br/>"); 
+	document.write(y); document.write("<br/>"); 
+	document.write(m); document.write("<br/>"); 
+	document.write(d); document.write("<br/>"); 
+	document.write(dd); document.write("<br/>"); 
+
+	//做一个自动走的钟表
+	var date = new Date();
+	var hour = date.getHours();
+	var min = date.getMinutes();
+	var sec = date.getSeconds();
+	h = document.getElementById('hour');
+	m = document.getElementById('min');
+	s = document.getElementById('sec');
+	h.innerHTML = hour;
+	m.innerHTML = min;
+	s.innerHTML = sec;
+
+	setInterval(function(){
+		sec++;
+		if(sec<10){
+			sec = '0'+sec;
+		}
+		if(sec>=60){
+			sec = '00';
+			min++;
+			if(min<10){
+				min = '0'+min;
+			}
+			if(min>=60){
+				min = '00';
+				hour++;
+				if(sec<10){
+					hour = '0'+hour;
+				}
+				if(hour>=24){
+					hour = '00';
+				}
+				h.innerHTML = hour;
+			}
+			m.innerHTML = min;
+		}
+		s.innerHTML = sec;
+	},1000);
+
+
+</script>
+</body>
+</html>

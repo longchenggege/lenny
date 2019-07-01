@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>js:1-1</title>
+    <meta charset="utf-8"/>
+    <style type="text/css">
+    	ul,li{
+    		padding:0;
+    		margin: 0;
+    		list-style: none;
+    	}
+    	#box{
+    		width: 750px;
+    		height: 200px;
+    		border:1px solid #ccc;
+    		margin: 20px auto;
+    		overflow: hidden;
+    		position: relative;
+    	}
+    	#box li{
+    		width: 100%;
+    		height: 100%;
+    		display: none;
+    	}
+    	#box li.cur{
+    		display: block;
+    	}
+    	#goleft,#goright{
+    		width: 50px;
+    		height: 50px;
+    		position: absolute;
+    		top:80px;
+    		left: 10px;
+    		background: #ccc;
+    		opacity: 0.3;
+            display: none;
+    	}
+    	#goright{
+    		left: auto;
+    		right: 10px;
+    	}
+    	#goleft:hover,#goright:hover{
+    		opacity: 0.5;
+    	}
+    	#goleft img,#goright img{
+    		max-width: 100%;
+    		max-height: 100%;
+    	}
+        #mol{
+            position: absolute;
+            bottom: 0px;
+            left: 300px;
+            z-index: 999;
+            margin: 0;
+        }
+        #mol li{
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #fff;
+            display: inline-block;
+        }
+        #mol .olcur{
+            background: #f00;
+        }
+    </style>
+</head>
+<body>
+	<div id='box'>
+		<div id="goleft"><img src="imgs/left.png"></div>
+		<div id="goright"><img src="imgs/right.png"></div>
+		<ul id='mli'>
+			<li class="cur"><img src="imgs/banner1.jpg"></li>
+			<li><img src="imgs/banner2.jpg"></li>
+			<li><img src="imgs/banner3.jpg"></li>
+		</ul>
+        <ol id='mol'>
+            <li class="olcur"></li>
+            <li></li>
+            <li></li>            
+        </ol>
+	</div>
+
+    <script type="text/javascript">
+  	    var mli = document.getElementById('mli');
+        var lis = mli.getElementsByTagName('li');
+
+        var mol = document.getElementById('mol');
+        var olis = mol.getElementsByTagName('li');
+
+        var box = document.getElementById('box');
+        var left = document.getElementById('goleft');
+        var right = document.getElementById('goright');
+        box.onmouseover = function(){
+            left.style.display = 'block';
+            right.style.display = 'block';
+        }
+        box.onmouseout = function(){
+          left.style.display = 'none';
+          right.style.display = 'none';
+        }
+
+        //定时器特效和左右点击特效区分
+  	    /*var index = 0;
+  	    var go = setInterval('gogo()',2000);
+  	    function gogo(){
+  	    	for(var i=0;i<lis.length;i++){
+  	    		lis[i].style.display = 'none';
+  	    	}
+  	    	if(index>=lis.length-1){
+  	    		index=0;
+  	    	}else{
+  	    		index++;
+  	    	}
+  	    	console.log(index);
+  	    	lis[index].style.display = 'block';
+  	    }*/
+
+  	    
+        var index = 0;
+        right.onclick = function(){
+            for(var i=0;i<lis.length;i++){
+                lis[i].style.display='none';
+            }
+            for(var i=0;i<olis.length;i++){
+                olis[i].className='';
+            }
+            index++;
+            console.log(index);
+            if(index>lis.length-1){
+                index=0;
+            }
+            lis[index].style.display='block';
+            olis[index].className = 'olcur';
+        }
+
+        left.onclick = function(){
+            for(var i=0;i<lis.length;i++){
+                lis[i].style.display='none';
+            }
+            for(var i=0;i<olis.length;i++){
+                olis[i].className='';
+            }
+            index--;
+            console.log(index);
+            if(index<0){
+                index = lis.length-1;
+            }
+            lis[index].style.display='block';
+            olis[index].className = 'olcur';
+        }
+  	    
+    </script>
+  
+</body>
+</html>

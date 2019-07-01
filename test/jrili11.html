@@ -1,0 +1,167 @@
+<html>
+<head>
+    <title>日历</title>
+    <meta charset="utf-8" />
+</head>    
+<body>
+	<h1>哈伦裤</h1>
+</body>
+<script type="text/javascript">
+var arr = new Array();
+var arr2 = [1,2,3];
+var arr3 = [{a:123},{b:2},{c:[7,8,9]}];
+
+
+
+var t = typeof(arr2);
+
+arr[0]='haha';
+/*
+console.log(arr[0]);
+console.log(arr4[2][2]);*/
+
+/*1-7天
+1--[class4]
+2--[class5 class6 class8]
+*/
+
+
+/*var s = obj[1][2];
+for(var i in s){
+	console.log(s[i]);
+}
+console.log(obj[1][2]);*/
+
+var res = [];
+var obj = [{3:[4]},{5:[5,6,8]}];
+
+var mm = [3,5];
+
+for(var i=1; i<=7;i++){
+	if (mm.indexOf(i)>=0){
+        res.push({
+          id:i,
+          cid:1
+        })
+      }else{
+        res.push({
+          id:i,
+          cid:0
+        })
+      }	
+}
+console.log(res);
+res[2]['cc'] = ['c5','c6','c8'];
+//console.log(res);
+
+/*console.log(i);
+	console.log(res);
+	for(var j in obj){
+		k = Object.keys(obj[j]);
+		var k1 = k[0];
+		if(i==k1){
+			console.log(i);
+			//res[i]['cid'] = obj[j][k1];
+		}
+	}*/
+/*console.log(k1);
+		console.log(obj[j][k1]);*/
+/*Object.keys(obj).forEach(function(key,i,v){
+            console.log(key)
+            console.log("---------")
+            console.log(i);
+            console.log("---------")
+            console.log(v)
+        }) */
+
+/*arr4.forEach((v,i)=>{                   
+    Object.keys(v).forEach(v=>{
+    	console.log(v+':'+arr4[i][v]);
+    })
+})*/
+/*var cid = new Array();*/
+
+/*for(var j=1; j<=7;j++){
+	res.push({
+		id:j,
+		cid:[]
+	})
+	arr4.forEach((v,i)=>{    
+	    Object.keys(v).forEach(v=>{
+	    	if(v==j){
+	    		console.log(arr4[j]);
+	    		//res[j]['cid'] = arr4[i][v];
+	    	}
+	    })
+	})
+	
+}*/
+/*res[1]['id'] = 5;
+res[1]['cid'] = [1,2,3];
+
+for(var y in res[1]['cid']){
+	console.log(res[1]['cid'][y]);
+}*/
+
+//console.log(res[1]['cid']);
+
+//console.log(res);
+
+/*res.push({
+	id:j,
+	cid:arr4[i][v]
+})*/
+/*console.log(v)//取到了key
+console.log(arr4[i][v])//取到了值*/
+
+
+// for(var j=1; j<=7;j++){}
+	
+
+/*var x1 = Object.keys(arr4);
+for(var x in x1){
+	console.log(x1[x]);
+}
+
+
+Object.keys(arr4).forEach(function(x){
+	console.log(x,":",arr4[x]);
+})*/
+
+/*for(var x in arr4){
+	console.log(x,":",arr4[x]);
+}*/
+
+/*var res = [1,2];
+var tag = document.getElementsByTagName('h1');
+var mycars=new Array(3);
+console.log(typeof(mycars));
+console.log(typeof(tag));
+res[1]='124';
+res[1].vv ='ssd';
+console.log(res[1]['vv']);
+
+var obj = {'a':['a','b'],'b':'bb'};*/
+
+/*for(var i=1; i<=7;i++){
+	for(var key in arr4){
+		if(i==key){
+			res.push({
+				id:i,
+				cid:arr4[key]
+			});
+		}else{
+			res.push({
+				id:i,
+				cid:[]
+			});
+		}
+	}
+	//console.log(res[i]['cc']);
+}*/
+
+
+
+
+</script>
+</html>

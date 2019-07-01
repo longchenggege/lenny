@@ -1,0 +1,51 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>123</title>
+		<style type="text/css">
+		body{
+			margin: 0;
+		}
+		div{
+			width: 25%;
+			height:100px;
+			float: left;
+		}
+		div:nth-child(1){
+			background: red;
+		}
+		div:nth-child(2){
+			background: green;
+		}
+		div:nth-child(3){
+			background: white;
+		}
+		div:nth-child(4){
+			background: black;
+		}
+		</style>
+		<script type="text/javascript">
+		(function(){
+			/*
+			iphone 6plus 
+			尺寸    curWidth     414
+			要变成  targetWidth  375
+			比例    scale       414/375
+			*/
+			var screenWidth = window.screen.width;
+			var wWidth = 375;
+			var scale = screenWidth/wWidth;
+			var meta = document.createElement('meta');
+			meta.name = 'viewport';
+			meta.content = 'initial-scale='+scale+',minimum-scale='+scale+',maximum-scale='+scale; 
+			document.head.appendChild(meta);
+		})();
+		</script>
+	</head>
+	<body style='margin:0;'>		
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+	</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>三级联动</title>
+	<style type="text/css">
+		
+	</style>
+</head>
+<body>
+	<select id='pp'>
+		
+	</select>
+	<select id='city'>
+		
+	</select>
+	<select id='qq'>
+		
+	</select>
+	
+<script>
+	var area = [
+	'江西',[
+		'吉安',['吉州','青原区','安福县'],
+		'南昌',['高新区','红谷滩区','碗里县'],
+		],
+	'湖南',[
+		'长沙',['岳麓区','雨花区'],
+		'湘潭',['哈哈区','黑河区']
+		],
+	'四川',[
+		'成都',['辰辰区','嘟嘟区'],
+		'绵阳',['绵绵区','杨洋区'],
+		]
+	];
+
+	var province = document.getElementById('pp');
+	var city = document.getElementById('city');
+	var qq = document.getElementById('qq');
+
+	for(var i=0;i<area.length;i++){
+		if(typeof(area[i])=='string'){
+			province.add(new Option(area[i],area[i]));
+		}
+	}
+
+	province.onchange = function(){
+		city.innerHTML = '';
+		qq.innerHTML = '';
+		//alert(province.value);
+		for(var i=0;i<area.length;i++){
+			if(area[i]==province.value){
+				var newarr = area[i+1];
+				for(key in newarr){
+					if(typeof(newarr[key])=='string'){
+						city.add(new Option(newarr[key],newarr[key]));
+					}
+				}
+				
+			}
+		}
+	}
+
+	city.onchange = function(){
+		//alert(province.value);
+		qq.innerHTML = '';
+		for(var i=0;i<area.length;i++){
+			if(typeof(area[i])!='string'){
+				for(var j=0;j<area[i].length;j++){
+					if(area[i][j]==city.value){
+						var newarr = area[i][j+1];
+						for(key in newarr){
+							if(typeof(newarr[key])=='string'){
+								qq.add(new Option(newarr[key],newarr[key]));
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+
+</script>
+</body>
+</html>
+
+

@@ -115,77 +115,77 @@ footer {
 
 @media screen and (max-width:980px) {
     header {
-    width:100%;
-    overflow:hidden;
-    *zoom:1;
-}
-header .name {
-    font: bold 36px/48px Arial, Helvetica, sans-serif;
-    color: #F90;
-    text-align:center
-}
-header nav {
-    background: none;
-    text-align: center;
-    height:auto;
-    width:100%;
-}
-header nav ul li {
-    display:inline-block;
-    background: #663;
-    border-radius: 5px;
-    margin:3px 0;
-    height:30px;
-    line-height:30px;
-    width:20%;
-}
-#container {
-    margin: 12px auto;
-    width: 100%;
-    overflow: hidden;
-    zoom: 1;
-}
-#container article {
-    width: 100%;
-    background: #fff;
-    border-radius: 5px;
-    float: none ;
-    padding:0;
-}
-#container article h1 {
-    width:95%;
-    margin:0 auto }
-#container article figure {
-    width:95%;
-    margin:0 auto
-}
-#container aside {
-    width: 100%;
-    ; float: none;
-}
-#container aside article {
-    background: #fff;
-    border-radius: 5px;
-    font-size: 12px;
-    padding: 10px;
-    width:100%;
-    margin-bottom:6px
-}
-footer {
-    background: #669;
-    width: 100%;
-    margin: 12px auto;
-    height:auto;
-    color: #fff;
-    text-align: center;
-    font: normal 12px/24px '微软雅黑';
-    border-radius: 5px;
-    padding:12px 0
-}
-footer em {
-    width:95%;
-    margin:0 auto;
-    display:block;
-    border-bottom:1px dotted #789
-}
+        width:100%;
+        overflow:hidden;
+        *zoom:1;
+    }
+    header .name {
+        font: bold 36px/48px Arial, Helvetica, sans-serif;
+        color: #F90;
+        text-align:center
+    }
+    header nav {
+        background: none;
+        text-align: center;
+        height:auto;
+        width:100%;
+    }
+    header nav ul li {
+        display:inline-block;
+        background: #663;
+        border-radius: 5px;
+        margin:3px 0;
+        height:30px;
+        line-height:30px;
+        width:20%;
+    }
+    #container {
+        margin: 12px auto;
+        width: 100%;
+        overflow: hidden;
+        zoom: 1;
+    }
+    #container article {
+        width: 100%;
+        background: #fff;
+        border-radius: 5px;
+        float: none ;
+        padding:0;
+    }
+    #container article h1 {
+        width:95%;
+        margin:0 auto }
+    #container article figure {
+        width:95%;
+        margin:0 auto
+    }
+    #container aside {
+        width: 100%;
+        ; float: none;
+    }
+    #container aside article {
+        background: #fff;
+        border-radius: 5px;
+        font-size: 12px;
+        padding: 10px;
+        width:100%;
+        margin-bottom:6px
+    }
+    footer {
+        background: #669;
+        width: 100%;
+        margin: 12px auto;
+        height:auto;
+        color: #fff;
+        text-align: center;
+        font: normal 12px/24px '微软雅黑';
+        border-radius: 5px;
+        padding:12px 0
+    }
+    footer em {
+        width:95%;
+        margin:0 auto;
+        display:block;
+        border-bottom:1px dotted #789
+    }
 }

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>bounce-demo</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, minimal-ui" />
+    <style>
+    /*Flexbox是一个相当优秀的属性，它可能会成为未来版面布局的一部分。
+    如果考虑到只处理移动方面的，那么兼容性就可以忽略了。
+    -moz代表firefox浏览器私有属性
+    -ms代表IE浏览器私有属性
+    -webkit代表chrome、safari私有属性*/
+    .navigation{list-style:none;margin:0;background:deepskyblue;
+        display:-webkit-box;display:-moz-box;display:-ms-flexbox;display:-webkit-flex;
+        display:flex;/*多栏多列布局*/
+        -webkit-flex-flow:row wrap;/*让灵活的项目在必要的时候进行拆行*/
+        justify-content:flex-end; /*<div> 元素的各项周围留有空白*/ }
+
+    .navigation a{text-decoration:none;display:block;padding:1em;color:white}
+    .navigation a:hover{background:#00AEE8}
+    @media all and (max-width:800px){.navigation{justify-content:space-around}
+    }
+    @media all and (max-width:600px){.navigation{-webkit-flex-flow:column wrap; padding:0}}
+    /*宽度小于600的时候自动换行：*/
+        .navigation a{text-align:center;padding:10px;border-top:1px solid rgba(255,255,255,0.3);
+            border-bottom:1px solid rgba(0,0,0,0.1)}
+        .navigation li:last-of-type a{background:#00AEE8; border-bottom: 0;}
+
+    /*指定父元素的最后一个 li 元素的背景色： li:nth-child(3) li的第3个元素   li:first-child 父元素的第一个子元素li里的内容*/
+
+</style>
+</head>
+<ul class="navigation">
+    <li><a href="#">首页</a></li>
+    <li><a href="#">简介</a></li>
+    <li><a href="#">公司介绍</a></li>
+    <li><a href="#">联系我们</a></li>
+</ul>
+
+<style>
+    .flex-list{padding:0;margin:0;list-style:none;display:
+            -webkit-box;display:-moz-box;display:-ms-flexbox;display:-webkit-flex;
+        display:flex;-webkit-flex-flow:row nowrap;
+        justify-content: center; -webkit-flex-flow:row wrap
+    }
+    .flex-list li{background:green;padding:5px;width:200px;height:150px; margin:10px;
+        line-height:150px;color:white;font-weight:bold;font-size:3em;text-align:center}
+
+    .aaa{ justify-content: center; -webkit-flex-flow:row wrap;}
+</style>
+<ul class="flex-list">
+    <li>1</li>
+    <li>2</li>
+    <li>3ssssdfsfsfsdasadasdadadasd</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+</ul>
+
+<style>
+    .wrapper{display:-webkit-box;display:-moz-box;display:-ms-flexbox;display:-webkit-flex;
+        display:flex;-webkit-flex-flow:row wrap;font-weight:bold;text-align:center}
+    .wrapper > *{padding:10px;flex:1 100%}
+    .header{background:tomato}
+    .footer{background:lightgreen}
+    .main{text-align:left;background:deepskyblue;}
+    .aside-1{background:gold}
+    .aside-2{background:hotpink}
+    @media all and (min-width:600px){.aside{flex:1 auto}/*让所有灵活的项目都带有相同的长度，忽略它们的内容：*/
+    }@media all and (min-width:800px){.main{flex:2 0px}
+        .aside-1{order:1}/*用整数值来定义排列顺序，数值小的排在前面。可以为负值*/
+        .main{order:2}
+        .aside-2{order:3}
+        .footer{order:4}
+    }
+</style>
+<div class="wrapper">
+    <header class="header">Header</header>
+    <article class="main">
+        <p>这是内容区域，这是内容区域，这是内容区域，这是内容区域，这是内容区域，这是内容区域，这是内容区域，这是内容区域，
+            这是内容区域，这是内容区域，这是内容区域，这是内容区域，这是内容区域，</p>
+    </article>
+    <aside class="aside aside-1">Aside 1 胜多负少分</aside>
+    <aside class="aside aside-2">Aside 2</aside>
+    <footer class="footer">Footer</footer>
+</div>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>事件</title>
+	<style type="text/css">
+		#d1{
+			width: 400px;
+			height: 400px;
+			margin: 100px auto;
+			border:1px solid #ccc;
+			background: #f00;
+		}
+		#d2{
+			width: 200px;
+			height: 200px;
+			border:1px solid #ccc;
+			background: #0f0;
+		}
+	</style>
+</head>
+<body>
+	<div id='d1'>
+		<div id='d2'>
+			
+		</div>
+	</div>
+	
+	<script>
+		/*//阻止冒泡
+		var d1 = document.getElementById('d1');
+		var d2 = document.getElementById('d2');
+		d1.onclick = function(){
+			alert(1);
+		}
+		d2.onclick = function(e){
+			var e = window.event||e;
+			e.stopPropagation();
+			alert(2);
+		}*/
+
+		//阻止右击
+		d1.oncontextmenu = function(e){
+			var e = window.event||e;
+			e.preventDefault();
+		}
+	</script>
+</body>
+</html>

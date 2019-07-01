@@ -1,0 +1,195 @@
+像素：
+
+设备独立（逻辑）像素：
+window.screen.width iphone6==>375
+手机屏幕大小:别名叫点(一个点里面可以放多个像素)，是个单位（可以量)
+（1）横竖屏切换，真机不会变，但模拟器里面会改变
+（2）在一个点里面，可以放多个像素
+（3）这个值可以改变(双指缩放)
+
+
+设备像素（物理像素）iphone6 750
+屏幕分辨率（实际像素值）、无法改变、虚拟的、无法获取
+
+
+像素比（DPR）：
+像素比 = 设备像素（分辨率）/独立像素
+无法改变
+
+若是尺寸不规则，手机显示会再转化一次：
+iphone plus 414
+dpr:3
+414x3=1242
+转成1080
+
+
+设计图：
+根据屏幕尺寸去设计：
+宽度最小750px
+
+
+
+
+
+移动端适配方案：
+不同尺寸手机设备，页面相对正常显示。
+方法：
+
+1、百分百适配 --- 2.html
+（1）百分比值不好确定
+（2）要确定父级大小，因为要根据父级大小计算
+（3）宽度可以设置但高度不好设置
+配合其他布局使用。
+
+2、比例缩放适配---3.html
+（1）把所有机型设备独立像素设置为一致，如375
+（2）viewport需要通过js动态设置（不能直接将device的值设为数值）
+（3)通过设置比例，将把宽度统一成一致
+注意：viewport给了缩放值以后，最终页面的宽度拿原来的值除以缩放比例，而不是乘缩放比例。
+缺陷：
+（1）同viewport设置固定宽度一样，所有手机看上去都是同样大小，没有分别，不大好。如：ipad和iphone6显示内容一样
+（2）算出的值在一些有小数的情况下可能会出现误差，（无关紧要）因为设备独立像素不能有小数。
+
+<script type="text/javascript">
+	(function(){
+		/*
+		iphone 6plus 
+		尺寸    curWidth     414
+		要变成  targetWidth  375
+		比例    scale       414/375
+		*/
+		var screenWidth = window.screen.width;
+		var wWidth = 375;
+		var scale = screenWidth/wWidth;
+		var meta = document.createElement('meta');
+		meta.name = 'viewport';
+		meta.content = 'initial-scale='+scale+',minimum-scale='+scale+',maximum-scale='+scale; 
+		document.head.appendChild(meta);
+	})();
+</script>
+
+3、viewport适配 -- 4.html
+根据dpr的值，将视口缩放，缩放到对应的物理像素。
+缺点：
+（1）不准确，dpr不为整数的时候，除不尽，算物理像素有误差。
+（2）如果屏幕分辨率非标准的话。iphone6 plus  414x3=1242 != 1080
+<script type="text/javascript">
+	(function(){
+		/*
+	    320     640
+	    375     750
+	    414     1242
+	    像素比 var dpr = window.devicePixelRatio; 可以获取
+		*/
+		var scale = 1/window.devicePixelRatio;
+		var meta = document.createElement('meta');
+		meta.name = 'viewport';
+		meta.content = 'initial-scale='+scale+',minimum-scale='+scale+',maximum-scale='+scale; 
+		document.head.appendChild(meta);
+	})();
+</script>
+
+
+4、rem适配 --- 5.html
+px
+绝对单位，屏幕改变长度不变
+
+em
+相对单位，相对父级
+(1)chrom下，1em最小为12px
+(2)相同元素内字体不一样，就不能统一设置
+
+rem
+相对根节点
+通过调整根节点大小，就可以按比例调整页面元素大小
+<script type="text/javascript">
+	var html =  document.documentElement;
+	var w = window.screen.width;
+	html.style.fontSize = w/16+'px'; //1rem就等于该值
+</script>
+将屏幕分成16份，(数值都可以，一般16或15/18，看做的时候在什么尺寸 320/16=20 375/15=25 1080/18=60)
+
+ide软件会自动计算px转rem：
+（1）less
+可以设置变量
+@rem:25rem;
+div:nth-child(1){
+	width:187/@rem;
+	height:100@rem;
+}
+（2）sublime cssrem插件设置自动转
+
+
+移动端适配可能兼容问题
+问题：
+（1）ios移动端overflow:hidden;会出现滚动条不起作用。
+.w{
+	width:200%;
+	overflow:hidden;
+}
+//ios会出现滚动条
+（2）固定定位
+a、移动端兼容性不是很好，老版本安卓和ios4前不支持
+b、qq浏览器往上滑动，会隐藏header
+c、打开键盘时候，固定定位失去作用。
+解决：
+1、css模拟
+2、事件
+
+（3）移动端样式重置
+手机内核多为webkit
+a、接连点击的时候，默认有背景
+-webkit-tap-highlight-color:rgba(0,0,0,0);
+b、按钮在ios都是圆角
+-webkit-appearance:none;
+border-radius:0;
+c、设备默认字体不一样（移动设备多没有宋体和微软雅黑）
+font-familay:helvetica;
+d、切换横竖屏或者用户自己通过浏览器设置，可以改变字体大小。（可以设置body下元素）
+-webkit-text-size-adjust:100%;
+e、长按文字ios下会选中文字，安卓不会。
+-webkit-user-select:none;
+f、固定定位低版本ios和部分安卓不兼容
+
+
+
+5、弹性布局适配 flex --- 9-flex.html
+
+（1）父容器设置 display:inline-flex/flex; 内部子元素就会有flex属性
+（2）子元素排列方式，主轴和侧轴flex-direction: row;(方向/)
+	row（默认） 向右   （行）
+	row-reverse 向左   
+	column 向下        （列）
+	column-reverse 向上
+	没有加 flex-wrap 属性会在一行一列上显示子元素内容。
+（2-1）flex-wrap:wrap/wrap-reverse; （wrap包裹） 
+自动换行或换列,在有限空间内排列，超出换行换列。
+row/column属性加上wrap属性，若是行，会设置纵向方向，若是列，会设置横向方向。
+row 横向向右 wrap 纵向向下 wrap-reverse 纵向向上
+column 向下  wrap 横向向右 wrap-reverse 横向向左
+
+flex-direction和flex-wrap 简写方式。flex-flow:flex-direction flex-wrap;
+*（3）order 添加给子元素，给指定子元素设置位置。
+	order:1; 默认都是0；设置order为1后会到结尾。
+	.cc div:first-of-type{
+		order:1;
+	}
+（4）justify-content 添加在父级，控制元素在主轴展现方式，横向方向。
+子元素排列方式， flex-start(默认),flex-end(主轴尾部)、center(居中)、space-between(平均分配,首尾元素不分配空间)、space-around(平均分配空间)
+
+（5）align-items,添加在父级，控制侧轴展示方式，垂直方向。
+	stretch(默认) 纵向会拉伸，但若设置height/min/max-height就不会
+	center（垂直居中）
+	flex-start(flex顶部)
+	flex-end(flex底部)
+	
+*（6）align-self  (伸缩项) 添加给子元素 flex-end flex-start 
+
+（7）align-content 和 justify-content 类似，区别待了解
+
+（8）flex-grow/ flex-shrink /flex-basis 添加在子元素
+flex-grow 右侧空间拉伸，值为整值
+flex-shrink 收缩程度，值为整值
+可以简写为 flex: flex-grow flex-shrink flex-basis;  
+flex:none; -- 0 0 auto
+flex 简写如果某个值不写，那么对应默认值是 1 1 0;

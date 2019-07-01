@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>购物车</title>
+	<style type="text/css">
+		
+	</style>
+</head>
+<body>
+	<table id='tab'>
+		<tbody>
+			<tr>
+				<td>11</td>
+				<td>12</td>
+			</tr>
+			<tr>
+				<td>21</td>
+				<td>22</td>
+			</tr>
+		</tbody>
+	</table>
+
+<script type="text/javascript">
+	var tab = document.getElementById('tab');
+	//获取12
+	//tbody--document.getElementByTag('tbody')--tBodies
+	// tr--document.getElementByTag('tr')--rows[]
+	// td--document.getElementByTag('td')--cells[]
+	var v = tab.tBodies[0].rows[0].cells[1].innerHTML;
+	alert(v);
+</script>
+</body>
+</html>
