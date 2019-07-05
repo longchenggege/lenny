@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>函数表达式-递归-闭包</title>
+</head>
+<body>
+
+	<div id='nn'>
+		<ul>
+			<li>11111</li>
+			<li>22222</li>
+			<li>33333</li>
+		</ul>
+	</div>
+
+<script type="text/javascript">
+	//递归
+	/*function fn(num){
+		if(num==1){
+			return 1;
+		}else{
+			return num*fn(num-1);
+			// 5+fn(5-1)
+			// 4+fn(4-1)
+			// 3+fn(3-1)
+			// 2+fn(2-1)
+			//1 ----15
+		}
+	}
+	alert(fn(5));*/
+
+	//闭包
+
+
+	/*var lis = document.getElementsByTagName('li');
+	//alert(lis.length);
+	for(var i=0;i<lis.length;i++){
+		lis[i].index = i;
+		lis[i].onclick =function(){
+			alert(this.index);
+		}
+		//点击找i的时候 for循环已经执行完毕，找i都是最后执行一次的数据，可以通过赋值属性index来获取
+	}*/
+
+	(function(){
+		for(var i=0;i<3;i++){
+			
+		}
+	})
+	
+	alert(i);
+
+</script>
+</body>
+</html>

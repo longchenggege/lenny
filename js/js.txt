@@ -483,3 +483,45 @@ function fn(){
 （2）引用计数 不常用，次数
 （3）手动清除 将对象和变量或函数--赋值 == null
 
+16、函数表达式
+ a、递归函数：
+ 自己调用自己
+	 function fn(m){
+	 	if(m>0){
+	 		return m+fn(m-1)
+	 	}else{
+	 		return 0;s
+	 	}
+	 }
+ b、闭包：
+ 1）函数中还有函数
+ 2）for循环中还有函数
+
+c、模仿块级元素作用域
+js没有块级作用域
+	for(var i=0;i<3;i++){
+	}
+	alert(i); --3
+模仿块级作用域	
+(function(){
+	for(var i=0;i<3;i++){
+	}
+})()
+alert(i); //报错
+
+
+17、this的使用
+this代表当前对象。
+var str = 'abcde';
+alert(window.str);
+全局中，变量就是window的属性,函数是window的方法。
+
+
+
+17.18.19 /2019-07-05 完成
+20-22  六、日
+23-25  一、二
+26     二
+29
+
+7月14之前处理完 javascript 视频教程

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>this</title>
+</head>
+<body>
+
+	<div id='nn'>
+		<ul>
+			<li>11111</li>
+			<li>22222</li>
+			<li>33333</li>
+		</ul>
+	</div>
+
+<script type="text/javascript">
+
+	var dom = document.getElementById('nn');
+	dom.onclick = function(){
+		alert(this); //this代表当前对象
+	}
+
+</script>
+</body>
+</html>
