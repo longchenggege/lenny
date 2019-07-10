@@ -511,11 +511,63 @@ alert(i); //报错
 
 
 17、this的使用
+（1）创建对象两种方式
+a、构造函数创建对象： new Object()
+var obj = new Object();
+obj.name = 'haha';
+obj.run = function(){
+	alert('fun');
+}
+b、字面量创建对象：{}
+
 this代表当前对象。
 var str = 'abcde';
 alert(window.str);
-全局中，变量就是window的属性,函数是window的方法。
 
+（2）如果函数中包含函数，则出现闭包，内部的this指向于window
+var uname = 'zhangsan';
+var obc = {
+	uname:'lisi',
+	run:function(){
+		return function(){
+			return this.uname;
+		}
+	}
+};
+alert(obc.run()()); --- zhangsan
+全局中，变量就是window的属性,函数是window的方法。
+（3）改变this指向
+将this赋值给其他变量  var that = this;
+var uname = 'zhangsan';
+var obc = {
+	uname:'lisi',
+	run:function(){
+		var that = this;
+		return function(){
+			return that.uname;
+		}
+	}
+};
+alert(obc.run()()); --- lisi
+(4）使用一个对象的方法，用一个对象替换当前对象
+call和apply的功能是一模一样的。
+call() -- obj.run.call(window);用window对象替换obj对象执行这个函数
+apply()
+区别 传递参数的时候不一样。
+call(obj,参数一,参数二,...)    //一个个参数传递
+apply(obj,[参数一,参数二,...]) //后面传递参数数组
+巧用求数组最小值：
+var arr = [1,43,5,4];
+alert(Math.max.apply(window,arr));
+
+
+18、瀑布流效果实现
+第一排自由排版，记录第一排元素的高度存入数组，之后出现的元素 都会放到 数组高度最小的元素下面，
+绝对定位方式（x-上面元素数组内序号*每个元素宽度 y-上面元素的高度），并且每执行一次，会重新定义高度最小的值，
+之前高度加上当前元素的高度，存入数组。之后元素都如此执行。
+
+
+19、高阶函数
 
 
 17.18.19 /2019-07-05 完成
@@ -525,3 +577,5 @@ alert(window.str);
 29
 
 7月14之前处理完 javascript 视频教程
+
+//和regexp 使用区别 匹配同class 元素

@@ -16,10 +16,62 @@
 
 <script type="text/javascript">
 
-	var dom = document.getElementById('nn');
+	/*var dom = document.getElementById('nn');
 	dom.onclick = function(){
 		alert(this); //this代表当前对象
 	}
+*/
+
+/*创建对象的两种方式：
+1.构造函数：*/
+var obj = new Object();
+obj.name = 'haha';
+obj.run = function(){
+	alert('fun');
+}
+//alert(obj.name);
+//2.字面量创建对象：
+var ob = {
+	name:'vvv',
+	run:function(){
+		return this;
+	}
+};
+//alert(ob.run());
+
+
+//this的使用
+//改变this指向
+var uname = 'zhangsan';
+var obc = {
+	uname:'lisi',
+	run:function(){
+		//var that = this;
+		return function(){
+			return this.uname; //that
+		}
+	}
+};
+//alert(obc.run()());
+
+
+//call apply
+var usname = 'zhangsan';
+var obd = {
+	usname:'lisi',
+	run:function(){
+		return this.usname;
+		/*return function(){
+			return this.usname; 
+		}*/
+	}
+};
+//alert( obd.run.call(window) );
+
+var arr = [1,4,6,3];
+alert(Math.max.apply(window,arr));
+
+
 
 </script>
 </body>
