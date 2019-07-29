@@ -62,7 +62,7 @@
       personDiv = $tagName(person,'div'),
       lis = $tagName(uls,'li'),
       perData = {speed:200,code:39},
-      datas = {size:30,x:10,y:10}; //size是元素宽高，xy横纵数量
+      datas = {size:29,x:10,y:10}; //size是元素宽高，xy横纵数量
 
   function init(){  //初始化游戏
     createMap();
@@ -95,12 +95,14 @@
   }
 
   function createFood(){
+
     var hrr = [];
     for(var i=0;i<lis.length;i++){
       if(is_Filter(lis[i])){
         hrr.push(lis[i]);
       }
     }
+
     function is_Filter(li){
       for(var i=0;i<personDiv.length;i++){
         if(li.index == personDiv[i].index){
@@ -151,7 +153,6 @@
       if(isOut() || isSelf()){
         alert('游戏结束');
         clearInterval(timer);
-
       }
       //判断是否撞到目标
       if(col(personDiv[0],food)){
@@ -219,7 +220,7 @@
   //检测碰撞函数
   function col(el1,el2){
     //el1 蛇
-    //el2 新点
+    //el2 新点（食物）
     var f1 = el1.offsetLeft+el1.offsetWidth;
     var f2 = el1.offsetLeft;
     var f3 = el1.offsetTop+el1.offsetHeight;

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>运动框架-多物体运动</title>
+	<style type="text/css">
+		ul li{
+			width: 100px;
+			height: 100px;
+			background: blue;
+			margin-bottom: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+
+	<script type="text/javascript">
+		var box = document.getElementsByTagName('li');
+		for(var i=0;i<box.length;i++){
+			box[i].onmouseover = function(){
+				animate(this,500);
+			}
+			box[i].onmouseout = function(){
+				animate(this,100);
+			}
+		}
+
+		var inte = null;
+		function animate(obj,len){
+			clearInterval(obj.inte);
+			var speed = 10;
+			if(len-obj.offsetWidth<0){
+				speed=-10;
+			}
+			obj.inte = setInterval(function(){
+				if(obj.offsetWidth==len){
+					clearInterval(inte);
+				}else{
+					obj.style.width = obj.offsetWidth+speed+'px';
+				}
+			},30)
+		}
+	</script>
+
+</body>
+</html>
