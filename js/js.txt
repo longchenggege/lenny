@@ -617,16 +617,96 @@ d、点击取消断点
 （特性）：继承性 引用性
 
 （2）对象用来干嘛
+
  》创建对象
  a/字面量形式 var obj = {}
  b/构造函数形式  var obj = new Array/Object/
  c/object.create 从原型（prototype）创建对象 
  var obj = Object.create(Array.prototype)//创建新对象并索要了数组对象的属性和方法
- 》设置对象
+
+ 》设置对象属性或方法
+ obj.attr = 'value';
+ obj.fn = function(){
+ }
 
  》查找对象
+a/obj.attr/obj.fn()
+b/obj['attr']
 
  》删除对象
+delete.对象.属性/方法
+
+》检测对象
+检测对象的属性是否存在
+a、in  
+属性 in 对象  ('name' in obj) 
+返回布尔值
+b、hasOwnProperty 不可枚举也返回true
+对象 hasOwnProperty(属性名称)
+obj hasOwnProperty('name')
+返回布尔值
+c、propertyIsEnumberable 不可枚举也返回false
+对象 propertyIsEnumberable(属性名称)
+obj propertyIsEnumberable('name')
+返回布尔值
+
+》枚举对象
+对象的属性枚举
+类似对象设置 name,age属性都是可枚举
+toString constructor 都是在对象原型身上的不可枚举
+for in 遍历出来的是可枚举的，遍历不出来的是不可枚举
+
+object.defineProperty(对象,属性名称,{
+	enumerable:false
+})-->让对象的属性不可枚举
+
+》对象的属性只读和只写
+get 只读 
+set 只写
+var obj = {
+	'username':'longhehe',
+	get age(){
+	 	return 20;
+	},
+	set age(val){
+		this.username=val;
+	}
+};
+
+》序列化对象
+对象-字符串 var str = JSON.stringify(obj);
+字符串-对象 var obj = JSON.parse(str);
+
+(3)对象模式
+》1工厂模式
+a/和现实工厂类似
+b/在函数内创建新的空对象，最后返回这个对象
+c/缺点，虽然 new 的是同一个函数，但方法作对比返回false,也就是说new的函数方法不是共享同一个地址。对比返回false
+
+》2构造函数模式 （就是普通函数，函数内部不是var,而是this.str）
+a/不需要早函数内创建对象和return对象
+b/函数首字母大写 new Array/String/Date/RegExp()
+c/缺点，虽然 new 的是同一个函数，但方法作对比返回false,也就是说new的函数方法不是共享同一个地址。对比返回false
+
+》3原型模式
+a/没创建一个函数，都有一个prototype原型的属性
+b/原型(prototype)这个属性的指针指向于一个对象，所有实例化该函数的对象共享属性和方法。实例化对象方法对比返回true
+
+c/缺点，因为是共享的方法，如果后期一个实例修改，所有实例都修改。
+
+》4构造+原型
+独享+共享
+
+》5动态原型模式
+让原型只实例化一次
+
+（4）对象继承
+》1原型链
+
+》2借用构造函数
+》3继承方式
+a/组合继承
+b/原型式继承
 
 25、设计模式
 
