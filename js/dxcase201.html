@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>面向对象案例Tab</title>
+	<style type="text/css">
+		*{margin: 0;padding:0;}
+		ul{list-style-type: none;}
+		body{
+			margin: 30px;
+		}
+		#uls{
+			width: 300px;
+			height: 50px;
+		}
+		#uls li{
+			width: 150px;
+			float: left;
+			text-align: center;
+			line-height: 50px;
+		}
+		#uls li.active{
+			background: #ccc;
+
+		}
+		.box2{
+			display: none;
+		}
+		/* .box1 ul,.box2 ul{
+			width: 300px;
+			height: 300px;
+			text-align: center;
+			line-height: 50px;
+		} */
+		.box1 ul li,.box2 ul li{
+			width: 300px;
+			line-height: 50px;
+			/* float: left; 
+			text-align: center;*/
+		}
+	</style>
+</head>
+<body>
+	<ul id="uls">
+		<li class="active">信息公告</li>
+		<li>服务公告</li>
+	</ul>
+	<div class="box1">
+		<ul>
+			<li>11111</li>
+			<li>22222</li>
+			<li>33333</li>
+			<li>11111</li>
+			<li>22222</li>
+			<li>33333</li>
+		</ul>
+	</div>
+	<div class="box2">
+		<ul>
+			<li>aaaaaaaa</li>
+			<li>bbbbbbbb</li>
+			<li>cccccccc</li>
+			<li>aaaaaaaa</li>
+			<li>bbbbbbbb</li>
+			<li>cccccccc</li>
+		</ul>
+	</div>
+
+
+	<div id="uls">
+		<span class="active">信息公告</span>
+		<span>服务公告</span>
+	</div>
+	<ul>
+		<li>11111</li>
+		<li>22222</li>
+		<li>33333</li>
+		<li>11111</li>
+		<li>22222</li>
+		<li>33333</li>
+	</ul>
+	<ul>
+		<li>aaaaaaaa</li>
+		<li>bbbbbbbb</li>
+		<li>cccccccc</li>
+		<li>aaaaaaaa</li>
+		<li>bbbbbbbb</li>
+		<li>cccccccc</li>
+	</ul>
+	
+
+<script type="text/javascript">
+	/*var uls = document.getElementById('uls');
+	lis = uls.getElementsByTagName('li');
+	divs = document.getElementsByTagName('div');
+	for(var i=0;i<lis.length;i++){
+		lis[i].index = i;
+		lis[i].onmouseover = function(){
+			//lis[i].className = '';
+			for(var j=0;j<divs.length;j++){
+				divs[j].style.display = 'none';
+				lis[j].className = '';
+			}
+			divs[this.index].style.display = 'block';
+			lis[this.index].className = 'active';
+		}
+	}*/
+
+	//1、先写入构造函数
+	//2、狗仔函数传入实参(对象)，按节点、展示、事件不同
+	function Tab(option){
+		alert(option);
+	}
+
+	new Tab({
+		
+	})
+
+
+</script>
+</body>
+</html>

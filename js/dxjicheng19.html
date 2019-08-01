@@ -10,8 +10,106 @@
 </div>
 
 <script type="text/javascript">
+	/*//原型链 
+	function parent(){
+		this.name = 'hehe';
+		this.arr = [1,2,3]
+	}
+	function child(){
+		this.age = 13;
+	}
+	child.prototype = new parent();//原型链方式核心语句
+	var obj1 = new child();
+	var obj2 = new child();
+	obj1.arr[2] = 'gogo'; //arr是引用类型，实例化的子类会互相影响
+	console.log(obj2.arr);*/
+
+
+	/*//借用构造函数
+	function parent(name,arr){
+		this.name = name;
+		this.arr = arr
+	}
+	function child(name,arr){
+		this.age = 13;
+		parent.call(this,name,arr); //构造函数方式核心语句
+	}
+	//child.prototype = new parent();
+	var obj1 = new child('liu',[2,3,4]);
+	var obj2 = new child('long',[4,5,3]);
+	console.log(obj2.arr);*/
+
+
+	/*//组合方式
+	function parent(name,arr){
+		this.name = name;
+		this.arr = arr
+	}
+	//可以复用的方法
+	parent.prototype.run = function(){
+		return '我是run方法';
+	}
+	function child(name,arr){
+		this.age = 13;
+		parent.call(this,name,arr); //构造函数方式核心语句 不能复用
+	}
+	child.prototype = new parent(); //原型链，1、参数不能传递 2、arr是引用属性 一个改变都改变
+	var obj1 = new child('liu',[2,3,4]);
+	var obj2 = new child('long',[4,5,3]);
+	console.log(obj2.run());*/
+
+
+	/*//原型式
+	function Fn(obj){
+		function F(){}
+		F.prototype = obj;
+		return new F();
+	}
+	var obj = {
+		name:'hehe',
+		age:23
+	}
+	var obj1 = Fn(obj);
+	var obj2 = Fn(obj);
+	obj1.aa = 'zhangsan';
+	obj2.bb = 'lisi';
+	console.log(obj1.aa);*/
+
+	//寄生式
+	/*//工厂模式
+	function CreateObj(){
+		var obj = new Object();
+		obj.name = 'hehe';
+		return obj;
+	}*/
+
+	//寄生组合式继承
+	function Fn(obj){
+		function F(){}
+		F.prototype = obj;
+		return new F();
+	}
+	function Sub(){
+		this.str = '张三';//基本属性
+		this.arr = [2,1,1];//引用属性
+	}
+	Sub.prototype.arr = [9,8,5];
+	Sub.prototype.run = function(){
+		return '共享run方法';
+	}
+	function SubType(){
+		Sub.call(this);
+	}
+	var obj1 = Fn(Sub.prototype); //核心--传递原型
+	obj1.constructor = SubType; //构造函数指向
+	Sub.prototype = obj1; //实例对象赋值给sub原型
 	
-	
+	var obj2 = new SubType();
+	var obj3 = new SubType();
+	obj2.arr[1] = 'gogo';
+	console.log(obj2.arr);
+	console.log(obj3.arr);
+
 </script>
 </body>
 </html>
