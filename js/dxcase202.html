@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>面向对象案例Tab</title>
+	<style type="text/css">
+		*{margin: 0;padding:0;}
+		ul{list-style-type: none;}
+		body{
+			margin: 30px;
+		}
+		#box1{
+			width: 300px;
+			height: 100px;
+			overflow: hidden;
+		}
+		#box2{
+			width: 100px;
+			height: 300px;
+		}
+		ul li{
+			width: 100px;
+			float: left;
+			height: 100px;
+			text-align: center;
+			line-height: 100px;
+			/* border:1px solid #ccc;margin: 5px; */
+		}
+		
+	</style>
+</head>
+<body>
+	
+	<div id="box1">
+		<ul>
+			<li>11111</li>
+			<li>22222</li>
+			<li>33333</li>
+			<li>44444</li>
+			<li>55555</li>
+			<li>66666</li>
+		</ul>
+	</div>
+
+	<hr style="clear: both; margin: 20px 0;">
+
+	<div id="box2">
+		<ul>
+			<li>aaaaaaaa</li>
+			<li>bbbbbbbb</li>
+			<li>cccccccc</li>
+			<li>aaaaaaaa</li>
+			<li>bbbbbbbb</li>
+			<li>cccccccc</li>
+		</ul>
+	</div>
+
+
+	
+
+<script type="text/javascript">
+	//获取 box 
+	//ul：宽度=li数目*一个的宽度 
+	// setInterval() 向左流动，当距离大于一个宽度（left/或margin-left负值），
+	var box = document.getElementById('box1');
+	//box.style.overflow = 'hidden';
+	var ul = box.getElementsByTagName('ul')[0];
+	var li = ul.getElementsByTagName('li');
+	var li_num = li.length;
+	var li_width = parseInt(getAttr(li[0],'width'));
+	ul.style.width = li_width*li.length+'px';
+	var index=0;
+	setInterval(function(){
+		index--;
+		if(Math.abs(index)>li_width){
+			ul.appendChild(ul.firstElementChild);//ul.firstChild
+			index=0;
+		}
+		ul.style.marginLeft  = index+'px';
+	},50)
+
+
+	/*function getattr(){
+		if(li[0].currentStyle){
+			return li[0].currentStyle['width'];
+		}else{
+			return getComputedStyle(li[0].null)['width'];
+		}
+	}*/
+	function getAttr(dom,value){
+	if(dom.currentStyle){
+		return dom.currentStyle[value];
+	}else{
+		return getComputedStyle(dom,null)[value];
+	}
+}
+
+
+</script>
+</body>
+</html>

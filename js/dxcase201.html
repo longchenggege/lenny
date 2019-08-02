@@ -45,7 +45,35 @@
 		<li class="active">信息公告</li>
 		<li>服务公告</li>
 	</ul>
-	<div class="box1">
+	<div id='box'>
+		<div class="box1">
+			<ul>
+				<li>11111</li>
+				<li>22222</li>
+				<li>33333</li>
+				<li>11111</li>
+				<li>22222</li>
+				<li>33333</li>
+			</ul>
+		</div>
+		<div class="box2">
+			<ul>
+				<li>aaaaaaaa</li>
+				<li>bbbbbbbb</li>
+				<li>cccccccc</li>
+				<li>aaaaaaaa</li>
+				<li>bbbbbbbb</li>
+				<li>cccccccc</li>
+			</ul>
+		</div>
+	</div>
+<hr>
+
+	<div id="btn">
+		<button class="active">信息公告</button>
+		<button>服务公告</button>
+	</div>
+	<div id="item">
 		<ul>
 			<li>11111</li>
 			<li>22222</li>
@@ -54,9 +82,7 @@
 			<li>22222</li>
 			<li>33333</li>
 		</ul>
-	</div>
-	<div class="box2">
-		<ul>
+		<ul style="display: none;">
 			<li>aaaaaaaa</li>
 			<li>bbbbbbbb</li>
 			<li>cccccccc</li>
@@ -65,31 +91,9 @@
 			<li>cccccccc</li>
 		</ul>
 	</div>
-
-
-	<div id="uls">
-		<span class="active">信息公告</span>
-		<span>服务公告</span>
-	</div>
-	<ul>
-		<li>11111</li>
-		<li>22222</li>
-		<li>33333</li>
-		<li>11111</li>
-		<li>22222</li>
-		<li>33333</li>
-	</ul>
-	<ul>
-		<li>aaaaaaaa</li>
-		<li>bbbbbbbb</li>
-		<li>cccccccc</li>
-		<li>aaaaaaaa</li>
-		<li>bbbbbbbb</li>
-		<li>cccccccc</li>
-	</ul>
-	
 
 <script type="text/javascript">
+	//面对过程
 	/*var uls = document.getElementById('uls');
 	lis = uls.getElementsByTagName('li');
 	divs = document.getElementsByTagName('div');
@@ -106,14 +110,70 @@
 		}
 	}*/
 
+	//面向对象按功能分块 索引和功能（复用性，一个效果多处使用）
+
 	//1、先写入构造函数
-	//2、狗仔函数传入实参(对象)，按节点、展示、事件不同
+	//2、构造函数传入实参(对象)，按节点、展示、事件不同传入参数
+	//3、 把面向过程代码放入init代码中，方法分布一般按功能细分
+	//4、需要修改：节点名称（this),注意this指向问题修改，this.index问题修改，因为this现在代表的不是节点，而是对象，所以index不存在，要当做参数传递过来
 	function Tab(option){
-		alert(option);
+		//console.log(option);
+		this.id = document.getElementById(option.id);
+		this.idChild = this.id.getElementsByTagName(option.idChild);
+		this.passiveId = document.getElementById(option.passiveId);
+		this.passiveChild = this.passiveId.getElementsByTagName(option.passiveChild);
+		this.events = option.events;
+		this.init();
+	}
+
+	Tab.prototype = {
+
+		/*init效果开始*/
+		init:function(){ 
+			var That = this;
+			//console.log(That.events);
+			for(var i=0;i<this.idChild.length;i++){
+				this.idChild[i].index = i;
+				this.idChild[i][this.events] = function(){
+					That.change(this.index);
+				}
+			}
+		},
+		/*init函数结束*/
+
+		change:function(i){
+			for(var j=0;j<this.passiveChild.length;j++){
+				this.passiveChild[j].style.display = 'none';
+				this.idChild[j].className = '';
+			}
+			//console.log(this.index);
+			this.passiveChild[i].style.display = 'block';
+			this.idChild[i].className = 'active';
+		}
+
+
 	}
 
 	new Tab({
-		
+		//谁加入事件 uls  li 
+		id:'uls',
+		idChild:'li',
+		//谁响应事件 item div
+		passiveId:'box',
+		passiveChild:"div",
+		//事件 点击/鼠标滑过
+		events:'onmouseover'
+	})
+
+	new Tab({
+		//谁加入事件 uls  li 
+		id:'btn',
+		idChild:'button',
+		//谁响应事件 item div
+		passiveId:'item',
+		passiveChild:"ul",
+		//事件 点击/鼠标滑过
+		events:'onclick'
 	})
 
 
