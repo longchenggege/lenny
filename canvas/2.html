@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>笔触 填充</title>
+	<!-- <meta name="viewport" content="width=100" > -->
+	<style type="text/css">
+		canvas{
+			border:1px solid #ccc;
+		}
+	</style>
+</head>
+<body>
+<!-- 变革flash 游戏 动画 网页广告 canvas 和 flash
+-->
+<canvas width="800"  height="500" id='myCanvas'>您的浏览器不支持canvas，请升级！</canvas>
+
+<script type="text/javascript">
+	var myCanvas = document.querySelector('#myCanvas');
+	//相当于ps新建的画布
+	var ctx = myCanvas.getContext("2d");
+	
+	//笔触 填充
+	//笔触视为一个Path实例，必须 stroke之后才能显示
+	//beginPath()
+	//closePath() 将划线自动封闭闭合
+	//moveTo(11,33) 节点移动到
+	//lineTo(12,33) 从节点还是划线到该位置
+	//stroke() 显示划线 划线之前可以设置宽度和颜色
+	//有一些path后,使用fill会自动填充
+
+	ctx.beginPath();
+	ctx.moveTo(100,100);
+	ctx.lineTo(200,300);
+	ctx.lineTo(300,300);
+	ctx.closePath();
+	ctx.lineWidth = '10';
+	ctx.strokeStyle = 'red';
+	ctx.stroke();
+	ctx.fillStyle = 'green';
+	ctx.fill();
+
+	ctx.beginPath();
+	ctx.moveTo(600,50);
+	ctx.lineTo(600,150);
+	ctx.lineTo(750,150);
+	ctx.closePath();
+	ctx.stroke();
+	ctx.fillStyle = 'orange';
+	ctx.fill();
+
+	//可以结合for
+	for(var i=50;i<500;i=i+20){
+		ctx.beginPath();
+		ctx.moveTo(i,i);
+		ctx.lineTo(i+50,i);
+		ctx.lineTo(i+100,i+100);
+		ctx.lineTo(i+150,i+10);
+		ctx.closePath();
+		ctx.stroke();
+		ctx.fillStyle = 'rgb('+i*5+',0,0,0.4)';
+		ctx.fill();
+	}
+
+</script>
+
+</body>
+</html>

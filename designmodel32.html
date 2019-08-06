@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>js设计模式</title>
+	<style type="text/css">
+		*{margin: 0;padding:0;}
+		ul{list-style-type: none;}
+		body{
+			margin: 30px;
+		}
+		#box1{
+			width: 300px;
+			height: 100px;
+			overflow: hidden;
+		}
+		#box2{
+			width: 100px;
+			height: 300px;
+			overflow: hidden;
+		}
+		ul li{
+			width: 100px;
+			float: left;
+			height: 100px;
+			text-align: center;
+			line-height: 100px;
+			/* border:1px solid #ccc;margin: 5px; */
+		}
+		
+	</style>
+</head>
+<body>
+	
+	<div id="box1">
+		<ul>
+			<li>11111</li>
+			<li>22222</li>
+			<li>33333</li>
+			<li>44444</li>
+			<li>55555</li>
+			<li>66666</li>
+		</ul>
+	</div>
+
+<script type="text/javascript">
+	/*类似 店铺 到货通知
+	店铺：发布者
+	用户：订阅者
+	多人点击 到货通知，一旦店铺更新到货，多人能收到讯息*/
+
+	var obj = {};
+	obj.list =[];
+
+	obj.listen = function(){
+
+	};
+	obj.message = function(){
+		
+	}
+
+</script>
+</body>
+</html>

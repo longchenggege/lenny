@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>canvas概述</title>
+	<!-- <meta name="viewport" content="width=100" > -->
+	<style type="text/css">
+		canvas{
+			border:1px solid #ccc;
+		}
+	</style>
+</head>
+<body>
+<!-- 变革flash 游戏 动画 网页广告 canvas 和 flash
+-->
+<canvas width="800"  height="500" id='myCanvas'>您的浏览器不支持canvas，请升级！</canvas>
+
+<script type="text/javascript">
+	var myCanvas = document.querySelector('#myCanvas');
+	//相当于ps新建的画布
+	var ctx = myCanvas.getContext("2d");
+	ctx.fillStyle = 'lightseagreen'; //设置填充颜色
+	ctx.fillRect(100,100,300,200); //绘制一个填充矩形
+	//相当于 moveTo lineTo几次运行 strokeRect一样可以实现
+
+
+
+</script>
+
+</body>
+</html>
