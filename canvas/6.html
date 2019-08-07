@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>canvas概述--面向对象-运动</title>
+	<!-- <meta name="viewport" content="width=100" > -->
+	<style type="text/css">
+		canvas{
+			border:1px solid #ccc;
+		}
+	</style>
+</head>
+<body>
+<!-- canvas 中元素不能运动，上屏幕后再也得不到，只能重绘新矩形，利用视觉暂留，形成运动
+	ctx.fillRect(0,0,100,100)类似使用绘制后的图形不能赋给其他参数 var ss = ctx.fillRect()
+-->
+<canvas width="800"  height="500" id='myCanvas'>您的浏览器不支持canvas，请升级！</canvas>
+
+<script type="text/javascript">
+	var myCanvas = document.querySelector('#myCanvas');
+	//相当于ps新建的画布
+	var ctx = myCanvas.getContext("2d");
+	
+	//clearRect(0,0,100,200) 清除画布 坐标
+	
+	//面向对象制作运动的一个结构：
+
+	/*function Circle(){
+
+	}
+	Circle.protoType.render = function(){
+
+	}
+	Circle.protoType.update = function(){
+
+	}
+
+	var yuan = new Circle();
+
+	setInterval(function(){
+		yuan.update();
+	,20});
+*/
+	//每一帧更新演员渲染演员，只要这个东西是演员，必须提供update和render方法,不运动的东西也需要每帧去刷新
+
+	function Circle(x,y,r,color){
+		this.x = x;
+		this.y = y;
+		this.r = r;
+		this.color = color;
+	}
+	Circle.prototype.render = function(){
+		ctx.beginPath();
+		ctx.arc(this.x,this.y,this.r,0,Math.PI*2,true);
+		ctx.fillStyle = this.color;
+		ctx.fill();
+	}
+	Circle.prototype.update = function(){
+		this.x += 10; 
+	}
+
+	function fang(x,y,l,k){
+		this.x = x;
+		this.y = y;
+		this.l = l;
+		this.k = k;
+	}
+	fang.prototype.render = function(){
+		ctx.beginPath();
+		ctx.fillStyle = 'green';
+		ctx.fillRect(this.x,this.y,this.l,this.k);
+	}
+
+	var yuan = new Circle(100,100,30,'red');
+	var fang = new fang(10,10,80,80);
+	console.log(yuan);
+	setInterval(function(){
+		ctx.clearRect(0,0,800,500);
+		yuan.render();
+		yuan.update();
+
+		fang.render();
+	},20);
+
+	
+
+</script>
+
+</body>
+</html>

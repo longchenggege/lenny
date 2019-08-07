@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>canvas概述--面向接口</title>
+	<!-- <meta name="viewport" content="width=100" > -->
+	<style type="text/css">
+		canvas{
+			border:1px solid #ccc;
+		}
+	</style>
+	<script type="text/javascript" src="simplejsinheritance.js"></script>
+</head>
+<body>
+<!-- 相当于游戏框架 所有继承类放在一个数组，最后遍历数组，整个游戏就动起来了
+-->
+<canvas width="800"  height="500" id='myCanvas'>您的浏览器不支持canvas，请升级！</canvas>
+
+<script type="text/javascript">
+	var myCanvas = document.querySelector('#myCanvas');
+	//相当于ps新建的画布
+	var ctx = myCanvas.getContext("2d");
+	
+	//js 继承可以通过 child.prototype = new parent();实现。
+	//这边引用 simplejsinheritance.js文件实现
+
+	//原始类 -- 其他类可以继承他
+	var Actor = Class.extend({
+		init:function(){
+			actorsArr.push(this);
+		},
+		render:function(){
+			throw new Error('所有继承类必须重写render方法');
+		},
+		update:function(){
+
+		}
+
+	});
+	//圆类
+	var Circle = Actor.extend({
+		init:function(x,y,r,color){
+			this.x = x;
+			this.y = y;
+			this.r = r;
+			this.color = color;
+			this._super();
+		},
+		render:function(){
+			ctx.beginPath();
+			ctx.arc(this.x,this.y,this.r,0,Math.PI*2,true);
+			ctx.fillStyle = this.color;
+			ctx.fill();
+		},
+		update:function(){
+			this.x += 10; 
+		}
+	});
+	//方类
+	var Fang = Actor.extend({
+		init:function(x,y,l,k){
+			this.x = x;
+			this.y = y;
+			this.l = l;
+			this.k = k;
+			this._super();
+		},
+		render:function(){
+			ctx.beginPath();
+			ctx.fillStyle = 'green';
+			ctx.fillRect(this.x,this.y,this.l,this.k);
+		}
+	});
+
+	var actorsArr = [];
+
+	var yuan = new Circle(100,100,30,'red');
+	var fang = new Fang(10,10,80,80);
+	//console.log(yuan);
+	setInterval(function(){
+		//清屏
+		ctx.clearRect(0,0,800,500);
+		//遍历更新渲染所有演员
+		for(var i=0;i<actorsArr.length;i++){
+			actorsArr[i].update();
+			actorsArr[i].render();
+		}
+	},20);
+	
+
+	
+
+</script>
+
+</body>
+</html>

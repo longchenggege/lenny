@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>canvas概述--游戏图片、音乐资源管理</title>
+	<!-- <meta name="viewport" content="width=100" > -->
+	<style type="text/css">
+		canvas{
+			border:1px solid #ccc;
+		}
+	</style>
+</head>
+<body>
+<!-- 
+-->
+<canvas width="800"  height="500" id='myCanvas'>您的浏览器不支持canvas，请升级！</canvas>
+
+<script type="text/javascript">
+	var myCanvas = document.querySelector('#myCanvas');
+	//相当于ps新建的画布
+	var ctx = myCanvas.getContext("2d");
+	
+	var img = new Image();
+	img.src = '../imgs/2.jpg';
+	img.onload = function(){
+		ctx.drawImage(img,100,100,400,200);//图片对象和左上角坐标和宽高,如果有9个参数，2-5个参数是描述切片的xy和宽高
+	}
+
+	
+
+</script>
+
+</body>
+</html>
