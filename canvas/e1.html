@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8"/>
-	<title>canvas概述--游戏图片、音乐资源管理</title>
+	<title>canvas概述--fly birds游戏</title>
 	<!-- <meta name="viewport" content="width=100" > -->
 	<style type="text/css">
 		canvas{
@@ -11,7 +11,13 @@
 	</style>
 </head>
 <body>
-<!-- 只有所有图片
+<!-- 
+	1、先写game类管理所有图片资源，设置主定时器
+	2、写背景类
+	3、写管子类
+	4、写鸟类
+	5、分数统计
+	6、场景管理
 -->
 <canvas width="800"  height="500" id='myCanvas'>您的浏览器不支持canvas，请升级！</canvas>
 
@@ -20,19 +26,8 @@
 	//相当于ps新建的画布
 	var ctx = myCanvas.getContext("2d");
 	
-	var img = new Image();
-	img.src = 'imgs/go2.png';
-	img.onload = function(){
-		var x = 0;
-		setInterval(function(){
-			ctx.clearRect(0,0,800,500);
-			x++;
-			if(x>4){
-				x=0;
-			}
-			ctx.drawImage(img,100*x,0,100,100,100+x*20,100,100,100);//图片对象和左上角坐标和宽高,如果有9个参数，2-5个参数是描述切片的xy和宽高
-		},500);
-	}
+	
+	
 
 </script>
 

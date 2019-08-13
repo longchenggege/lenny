@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>canvas概述--游戏图片、音乐资源管理</title>
+	<!-- <meta name="viewport" content="width=100" > -->
+	<style type="text/css">
+		canvas{
+			border:1px solid #ccc;
+		}
+	</style>
+</head>
+<body>
+<!-- 不管游戏内有多少元素在运动，游戏仅有1个定时器，这一定时器让所有演员更新渲染。
+	实际上，一个游戏有大量图片，只有当所有图片都load了，游戏才能开始，主循环的setInterval()才能启动。
+
+	思路：数组存放所有资源图片名字，用循环预计
+-->
+<canvas width="800"  height="500" id='myCanvas'>您的浏览器不支持canvas，请升级！</canvas>
+
+<script type="text/javascript">
+	var myCanvas = document.querySelector('#myCanvas');
+	//相当于ps新建的画布
+	var ctx = myCanvas.getContext("2d");
+
+
+	var imgObj = {
+		'maozi':'imgs/hei.png',
+		'toufa':'imgs/hong.png'
+	};
+
+	//图片资源对象，k和imagesObj一样，v是真正图片Image对象
+	var R = {};
+	var count = 0;
+	for(var k in imgObj){
+		R[k] = new Image();
+		R[k].src = imgObj[k];
+		R[k].onload = function(){
+			count++;
+			if(count===2){
+				var x = 0;
+				setInterval(function(){
+					ctx.clearRect(0,0,800,500);
+					x++;
+					if(x>4){
+						x=0;
+					}
+					ctx.drawImage(R.maozi,100*x,200,100,100,100+x*20,100,100,100);
+					ctx.drawImage(R.toufa,100*x,200,100,100,200+x*20,100,100,100);
+				},500);
+			}
+		}
+	}
+	
+</script>
+
+</body>
+</html>
