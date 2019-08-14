@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>fly birds游戏</title>
+	<!-- <meta name="viewport" content="width=100" > -->
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		canvas{
+			border:1px solid #ccc;
+		}
+	</style>
+</head>
+<body>
+<!-- 
+	1、先写game类管理所有图片资源，设置主定时器
+	2、写背景类
+	3、写管子类
+	4、写鸟类
+	5、分数统计
+	6、场景管理
+-->
+<canvas width="360"  height="520" id='myCanvas'>您的浏览器不支持canvas，请升级！</canvas>
+
+<script type="text/javascript" src="js/simplejsinheritance.js"></script>
+<script type="text/javascript" src="js/underscore-min.js"></script>
+<script type="text/javascript" src="js/Game.js"></script>
+<!-- game是中介者，全局变量，现在把这些量放入一个类的实例身上，这个类就是中介者，之后元素都是Gmae类new出来的，其他元素要互相通信要通过game类，在html5中，game类还将有主循环和游戏资源管理。 -->
+
+<script type="text/javascript">
+	//中介者
+	var game = new Game('myCanvas');
+
+</script>
+
+</body>
+</html>
