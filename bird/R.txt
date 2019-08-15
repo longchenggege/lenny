@@ -1,4 +1,8 @@
 {
 	"bg_day":"images/bg_day.png",
-	"bird0_1":"images/bird0_1.png"
+	"bird0_1":"images/bird0_1.png",
+	"bg_night":"images/bg_night.png",
+	"land":"images/land.png",
+	"pipe_down":"images/pipe_down.png",
+	"pipe_up":"images/pipe_up.png"
 }

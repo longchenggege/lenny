@@ -2,6 +2,7 @@
 	var Game = window.Game = Class.extend({
 		//构造函数
 		init:function(id){
+			
 			//得到画布
 			this.canvas = document.getElementById(id);
 			//画布上下文
@@ -11,17 +12,24 @@
 			//图片资源对象 v是图片路径
 			this.RObj = null;
 			this.R = {};
-			//加载所有资源
-			this.loadResources();
+			//帧编号
+			this.f = 0;
+			//演员清单
+			this.actors = [];
+			//加载所有资源，该函数后会加载start函数
+			this.loadResources(function(){
+				this.start();
+			});
 		},
+		
 		//加载所有资源
-		loadResources:function(){
+		loadResources:function(callback){
 			var self = this;
-
-			self.ctx.font = '30px 微软雅黑';
+			//加载图片资源提示
+			self.ctx.font = '20px 微软雅黑';
 			self.ctx.textAlign = 'center';
-			self.ctx.fillText('正在加载图片..',self.canvas.width/2,self.canvas.height/2);
-						
+			self.ctx.fillText('正在加载图片..',self.canvas.width/2,self.canvas.height*(1-0.618));
+				
 			var count = 0;
 			var xhr = new XMLHttpRequest();
 			xhr.onreadystatechange = function(){
@@ -37,17 +45,54 @@
 						//发出src请求
 						self.R[k].src = self.RObj[k];
 						self.R[k].onload = function(){
+							//清屏
 							self.ctx.clearRect(0,0,self.canvas.width,self.canvas.height);
 							count++;
-							//self.ctx.fillText('正在加载图片'+count+'/'+imagesAmount,100,100);
+							self.ctx.fillText('正在加载图片'+count+'/'+imagesAmount,self.canvas.width/2,self.canvas.height*(1-0.618));
+							//所有资源加载完
+							if(count==imagesAmount){
+								//开始主循环
+								callback.call(self);
+							}
 						}
 					}
 					console.log(self.RObj);
 				}
 			}
-			xhr.open('get',this.RtextURL,true);
+			xhr.open('get',this.RtextURL,true);//true异步调用
 			xhr.send(null);
-		}
+		},
+		start:function(){
+			var self = this;
+			//背景
+			this.bg = new Background();
+			//大地 要在背景下面
+			this.land = new Land();
+
+			this.pipe = new Pipe();
+			//游戏开始了，主循环
+			this.timer = setInterval(function(){
+				//清屏
+				self.ctx.clearRect(0,0,self.canvas.width,self.canvas.height);
+				
+				_.each(self.actors,function(actor){
+					actor.update();
+					actor.render();
+				});
+				//打印帧编号
+				self.f++;
+				self.ctx.font = '14px 微软雅黑';
+				self.ctx.fillText(self.f,20,20);
+
+			},50)
+		},
+
+		//获取数组内随机数
+		getrandom:function(arr){ //[1,2,3,4]
+			var len = Math.random()*arr.length;
+			return (arr[Math.floor(len)]);
+		},
+		
 	})
 })();
 
