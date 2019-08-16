@@ -69,16 +69,21 @@
 			//大地 要在背景下面
 			this.land = new Land();
 
-			this.pipe = new Pipe();
 			//游戏开始了，主循环
 			this.timer = setInterval(function(){
 				//清屏
 				self.ctx.clearRect(0,0,self.canvas.width,self.canvas.height);
-				
+				//遍历actors元素执行语句
 				_.each(self.actors,function(actor){
 					actor.update();
 					actor.render();
 				});
+
+				//实例化管子
+				if(self.f%60==0){
+					new Pipe();
+				}
+
 				//打印帧编号
 				self.f++;
 				self.ctx.font = '14px 微软雅黑';
@@ -91,6 +96,11 @@
 		getrandom:function(arr){ //[1,2,3,4]
 			var len = Math.random()*arr.length;
 			return (arr[Math.floor(len)]);
+		},
+		//获取数据范围内随机数
+		frandom:function(m,n){ //(1,10)
+			var len = Math.random()*(n-m);
+			return (m+Math.floor(len));
 		},
 		
 	})
